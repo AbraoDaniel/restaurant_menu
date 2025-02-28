@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   title: 'Restaurante gourmet',
   description: 'Restaurante gourmet',
   viewport: 'width=device-width, initial-scale=1',
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico"
+  },
   openGraph: {
     title: 'Restaurante gourmet',
     description: 'Restaurante gourmet',

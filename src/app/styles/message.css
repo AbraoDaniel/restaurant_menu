@@ -1,0 +1,5 @@
+.ant-message-notice-content {
+  background-color: var(--default-background-color) !important;
+  color: var(--default-text-color) !important;
+  border: 1px solid var(--default-border-color);
+}
