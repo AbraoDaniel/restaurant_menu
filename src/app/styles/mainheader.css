@@ -1,0 +1,53 @@
+@import './keyframes.css';
+
+.main-header {
+  width: 38%;
+  background-color: var(--default-background-color);
+  border-radius: 12px;
+  padding: 10px;
+  position: absolute;
+  z-index: 100;
+  margin-top: 50px;
+  margin-left: 50px;
+  animation: showing 0.5s linear; 
+
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    p {
+      margin: 0 15px;
+      font-size: 16px;
+      display: inline-block;
+    }
+
+    .restaurant-name {
+      font-weight: bold;
+    font-size: 20px;
+      .name {
+        font-size: 30px;
+        cursor: pointer;
+        a {
+          color: var(--default-text-color);
+        }
+      }
+    }
+    .menu-options {
+      .menu-item {
+        a {
+          color: var(--default-text-color);
+        }
+        font-size: 13px;
+        cursor: pointer;
+      }
+      .menu-item:hover {
+        a {
+          font-weight: bold !important;
+        }
+      }
+    }
+  }
+}

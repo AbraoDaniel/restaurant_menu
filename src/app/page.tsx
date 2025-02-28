@@ -1,95 +1,64 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import CategoryCard from "@/components/CategoryCard"
+import HeaderMenu from "@/components/HeaderMenu"
+import MainVideo from "@/components/MainVideo"
+import { pages } from "@/util/generalFields"
+import { Col, Row } from "antd"
+import { Metadata } from "next"
+import { Forum } from "next/font/google";
+
+const forum = Forum({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: 'danti.',
+  description: 'danti gourmet',
+  openGraph: {
+    title: 'danti gourmet',
+    description: 'Um layout de restaurante gourmet',
+    // images: ['https://danielabrao.com.br/danti-laptop.png']
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true
+    }
+  }
+}
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+    <Row className="homepage">
+      <Col xs={18} className="main-presentation">
+        <HeaderMenu />
+        <MainVideo />
+        <div className="main-text">
+          <Row>
+            <p className={`main-title ${forum.className}`}>
+              {'SUSHI'}
+            </p>
+          </Row>
+          <Row>
+            <p className={`main-title ${forum.className}`}>
+              {'SENSATION'}
+            </p>
+          </Row>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+      </Col>
+      <Col xs={6} className="categories">
+        <div className="main-categories">
+          {pages?.map((page) => {
+            return (
+                <CategoryCard key={page?.key} path={page?.key} label={page?.label} />
+            )
+          })}
+        </div>
+      </Col>
+    </Row>
+  )
 }
