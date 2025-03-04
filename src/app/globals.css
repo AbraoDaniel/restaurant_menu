@@ -3,6 +3,8 @@
 @import './styles/menu.css';
 @import './styles/login.css';
 @import './styles/message.css';
+@import './styles/adminpage.css';
+@import './styles/contacts.css';
 
 :root {
   --background: #ffffff;

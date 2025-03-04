@@ -8,34 +8,57 @@ export const pages = [
 
 export const menuItems = [
   {
-    category: 'MAKI', items: [
-      { image: '/assets/maki/mango_maki.png', name: 'MANGO MAKI', price: '20', description: 'Tempura-fried shrimp, cucumber, and cream cheese embrace a center of fresh avocado, delivering a satisfying contrast of textures.' },
-      { image: '/assets/maki/spicy_tuna.png', name: 'SPICY TUNA MAKI', price: '20', description: 'A tantalizing blend of spicy tuna, cucumber, and avocado, harmoniously rolled in nori and seasoned rice.' },
-      { image: '/assets/maki/spicy_tuna.png', name: 'SPICY TUNA MAKI', price: '20', description: 'A tantalizing blend of spicy tuna, cucumber, and avocado, harmoniously rolled in nori and seasoned rice.' },
-      { image: '/assets/maki/spicy_tuna.png', name: 'SPICY TUNA MAKI', price: '20', description: 'A tantalizing blend of spicy tuna, cucumber, and avocado, harmoniously rolled in nori and seasoned rice.' },
-      { image: '/assets/maki/spicy_tuna.png', name: 'SPICY TUNA MAKI', price: '20', description: 'A tantalizing blend of spicy tuna, cucumber, and avocado, harmoniously rolled in nori and seasoned rice.' },
-      { image: '/assets/maki/spicy_tuna.png', name: 'SPICY TUNA MAKI', price: '20', description: 'A tantalizing blend of spicy tuna, cucumber, and avocado, harmoniously rolled in nori and seasoned rice.' }
+    category: 'MASSAS', items: [
+      { image: '/assets/foods/pasta/spaghetti.jpg', name: 'Spaghetti Toscano', price: '20', description: 'Uma versão sofisticada do clássico espaguete, servido com ragu de carne lentamente cozido, finalizado com lascas de parmesão, manjericão fresco e um fio de azeite de oliva extravirgem.' },
+      { image: '/assets/foods/pasta/pappardelle.jpg', name: 'Tagliatelle alla Bolognese', price: '20', description: 'Tagliatelle caseiro servido com um rico molho bolonhesa, preparado com carne cozida lentamente, tomates frescos e temperos italianos.' },
+      { image: '/assets/foods/pasta/pasta_3.jpg', name: 'Fettuccine alla Mediterrânea', price: '20', description: 'Fettuccine envolvido em um molho de tomate artesanal com azeitonas pretas, pimentões e ervas frescas.' },
+      { image: '/assets/foods/pasta/spaghetti.jpg', name: 'Spaghetti Toscano', price: '20', description: 'Uma versão sofisticada do clássico espaguete, servido com ragu de carne lentamente cozido, finalizado com lascas de parmesão, manjericão fresco e um fio de azeite de oliva extravirgem.' },
+      { image: '/assets/foods/pasta/pappardelle.jpg', name: 'Tagliatelle alla Bolognese', price: '20', description: 'Tagliatelle caseiro servido com um rico molho bolonhesa, preparado com carne cozida lentamente, tomates frescos e temperos italianos.' },
+      { image: '/assets/foods/pasta/pasta_3.jpg', name: 'Fettuccine alla Mediterrânea', price: '20', description: 'Fettuccine envolvido em um molho de tomate artesanal com azeitonas pretas, pimentões e ervas frescas.' }
     ]
   },
   {
-    category: 'URAMAKI', items: [
-      { image: '/assets/uramaki/rainbow.png', name: 'RAINBOW FUSION', price: '20', description: 'A colorful blend of fresh tuna, salmon, yellowtail, and avocado, enveloping a core of cucumber and crab stick.' },
-      { image: '/assets/uramaki/volcano.png', name: 'VOLCANO DELIGHT', price: '20', description: 'Creamy crab salad, avocado, and cucumber rolled inside, topped with spicy tuna and drizzled with fiery sriracha sauce.' },
-      { image: '/assets/uramaki/volcano.png', name: 'VOLCANO DELIGHT', price: '20', description: 'Creamy crab salad, avocado, and cucumber rolled inside, topped with spicy tuna and drizzled with fiery sriracha sauce.' },
-      { image: '/assets/uramaki/volcano.png', name: 'VOLCANO DELIGHT', price: '20', description: 'Creamy crab salad, avocado, and cucumber rolled inside, topped with spicy tuna and drizzled with fiery sriracha sauce.' },
-      { image: '/assets/uramaki/volcano.png', name: 'VOLCANO DELIGHT', price: '20', description: 'Creamy crab salad, avocado, and cucumber rolled inside, topped with spicy tuna and drizzled with fiery sriracha sauce.' },
-      { image: '/assets/uramaki/volcano.png', name: 'VOLCANO DELIGHT', price: '20', description: 'Creamy crab salad, avocado, and cucumber rolled inside, topped with spicy tuna and drizzled with fiery sriracha sauce.' },
-      { image: '/assets/uramaki/volcano.png', name: 'VOLCANO DELIGHT', price: '20', description: 'Creamy crab salad, avocado, and cucumber rolled inside, topped with spicy tuna and drizzled with fiery sriracha sauce.' }
+    category: 'PIZZAS', items: [
+      { image: '/assets/foods/pizza/pizza.jpg', name: 'Pizza Margherita Gourmet', price: '20', description: 'Uma interpretação sofisticada da tradicional Margherita, feita com molho de tomate fresco, mussarela de búfala, manjericão e um toque especial de pimentas verdes.' },
+      { image: '/assets/foods/pizza/pizza_2.jpg', name: 'Pizza Pepperoni Clássica', price: '20', description: 'Uma pizza artesanal com massa crocante, generosamente coberta com molho de tomate rústico, queijo derretido e fatias de pepperoni levemente picantes.' },
+      { image: '/assets/foods/pizza/pizza.jpg', name: 'Pizza Margherita Gourmet', price: '20', description: 'Uma interpretação sofisticada da tradicional Margherita, feita com molho de tomate fresco, mussarela de búfala, manjericão e um toque especial de pimentas verdes.' },
+      { image: '/assets/foods/pizza/pizza_2.jpg', name: 'Pizza Pepperoni Clássica', price: '20', description: 'Uma pizza artesanal com massa crocante, generosamente coberta com molho de tomate rústico, queijo derretido e fatias de pepperoni levemente picantes.' },
+      { image: '/assets/foods/pizza/pizza.jpg', name: 'Pizza Margherita Gourmet', price: '20', description: 'Uma interpretação sofisticada da tradicional Margherita, feita com molho de tomate fresco, mussarela de búfala, manjericão e um toque especial de pimentas verdes.' },
+      { image: '/assets/foods/pizza/pizza_2.jpg', name: 'Pizza Pepperoni Clássica', price: '20', description: 'Uma pizza artesanal com massa crocante, generosamente coberta com molho de tomate rústico, queijo derretido e fatias de pepperoni levemente picantes.' },
+      { image: '/assets/foods/pizza/pizza.jpg', name: 'Pizza Margherita Gourmet', price: '20', description: 'Uma interpretação sofisticada da tradicional Margherita, feita com molho de tomate fresco, mussarela de búfala, manjericão e um toque especial de pimentas verdes.' }
     ]
   },
   {
-    category: 'SPECIAL ROLLS', items: [
-      { image: '/assets/special/sunrise.png', name: 'SUNRISE BLISS', price: '20', description: 'A delicate combination of fresh salmon, cream cheese, and asparagus, rolled in orange-hued tobiko for a burst of sunrise-inspired flavors.' },
-      { image: '/assets/special/truffle.png', name: 'TRUFFLE INDULGENCE', price: '20', description: 'Decadent slices of black truffle grace a roll of succulent wagyu beef, cucumber, and microgreens, culminating in an exquisite umami symphony.' },
-      { image: '/assets/special/truffle.png', name: 'TRUFFLE INDULGENCE', price: '20', description: 'Decadent slices of black truffle grace a roll of succulent wagyu beef, cucumber, and microgreens, culminating in an exquisite umami symphony.' },
-      { image: '/assets/special/truffle.png', name: 'TRUFFLE INDULGENCE', price: '20', description: 'Decadent slices of black truffle grace a roll of succulent wagyu beef, cucumber, and microgreens, culminating in an exquisite umami symphony.' },
-      { image: '/assets/special/truffle.png', name: 'TRUFFLE INDULGENCE', price: '20', description: 'Decadent slices of black truffle grace a roll of succulent wagyu beef, cucumber, and microgreens, culminating in an exquisite umami symphony.' },
-      { image: '/assets/special/truffle.png', name: 'TRUFFLE INDULGENCE', price: '20', description: 'Decadent slices of black truffle grace a roll of succulent wagyu beef, cucumber, and microgreens, culminating in an exquisite umami symphony.' },
+    category: 'ESPECIAIS', items: [
+      { image: '/assets/foods/special/seafoods.jpg', name: 'Spaghetti di Mare', price: '20', description: 'Uma deliciosa combinação de espaguete com camarões suculentos, tomate cereja e ervas frescas.' },
+      { image: '/assets/foods/special/seafoods.jpg', name: 'Spaghetti di Mare', price: '20', description: 'Uma deliciosa combinação de espaguete com camarões suculentos, tomate cereja e ervas frescas.' },
+      { image: '/assets/foods/special/seafoods.jpg', name: 'Spaghetti di Mare', price: '20', description: 'Uma deliciosa combinação de espaguete com camarões suculentos, tomate cereja e ervas frescas.' },
+      { image: '/assets/foods/special/seafoods.jpg', name: 'Spaghetti di Mare', price: '20', description: 'Uma deliciosa combinação de espaguete com camarões suculentos, tomate cereja e ervas frescas.' },
+      { image: '/assets/foods/special/seafoods.jpg', name: 'Spaghetti di Mare', price: '20', description: 'Uma deliciosa combinação de espaguete com camarões suculentos, tomate cereja e ervas frescas.' },
+      { image: '/assets/foods/special/seafoods.jpg', name: 'Spaghetti di Mare', price: '20', description: 'Uma deliciosa combinação de espaguete com camarões suculentos, tomate cereja e ervas frescas.' },
     ]
   }
+]
+
+export const serviceHours = [
+  { day: "SEG", hour: "Fechado" },
+  { day: "TER", hour: "18:30 - 23:30" },
+  { day: "QUA", hour: "18:30 - 23:30" },
+  { day: "QUI", hour: "18:30 - 23:30" },
+  { day: "SEX", hour: "18:30 - 23:30" },
+  { day: "SÁB & DOM", hour: "18:30 - 23:30" },
+]
+
+export const addressAndContacts = [
+  { contact: "Telefone", value: "+55 47 98444-4444" },
+  { contact: "E-mail", value: "dantirestaurant@gmail.com" },
+  { contact: "Instagram", value: "@dantirestaurant" },
+  { contact: "Endereço", value: "130 E 23rd St" }
+]
+
+export const pictures = [
+  { src: "/assets/contacts_page/first.jpg", link: "https://www.linkedin.com/in/daniel-alexsandro-abr%C3%A3o-2002/" },
+  { src: "/assets/contacts_page/second.jpg", link: "https://www.linkedin.com/in/daniel-alexsandro-abr%C3%A3o-2002/" },
+  { src: "/assets/contacts_page/third.jpg", link: "https://www.linkedin.com/in/daniel-alexsandro-abr%C3%A3o-2002/" },
+  { src: "/assets/contacts_page/fourth.jpg", link: "https://www.linkedin.com/in/daniel-alexsandro-abr%C3%A3o-2002/" }
 ]

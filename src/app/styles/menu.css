@@ -33,6 +33,7 @@
 
         .name {
           font-size: 120px;
+          text-shadow: 1px 1px 10px black;
           color: var(--default-text-color);
         }
       }

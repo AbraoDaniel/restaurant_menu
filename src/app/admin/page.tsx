@@ -3,6 +3,7 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/util/firebase";
 import { useEffect, useState } from "react";
+import { Button, Input, Row } from "antd";
 
 type Category = {
   id: string;
@@ -22,9 +23,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState<Category[]>([]);
   const [newCategory, setNewCategory] = useState("");
-  // Mapeia o ID da categoria para a lista de produtos
   const [productsMap, setProductsMap] = useState<{ [key: string]: Product[] }>({});
-  // Inputs para novos produtos, por categoria
   const [newProductInputs, setNewProductInputs] = useState<{
     [key: string]: Partial<Product>;
   }>({});
@@ -88,7 +87,6 @@ export default function AdminPage() {
       console.error(error);
     }
   }
-
   // Remove uma categoria
   async function handleDeleteCategory(id: string) {
     try {
@@ -146,97 +144,101 @@ export default function AdminPage() {
   }
 
   return (
-    <main style={{ padding: "1rem" }}>
-      <h1>Painel Administrativo</h1>
+    <div className="admin-control">
+      <div className="main-page">
+        <p className="panel-title">Painel Administrativo</p>
 
-      <section>
-        <h2>Categorias</h2>
-        <div style={{ marginBottom: "1rem" }}>
-          <input
-            value={newCategory}
-            onChange={(e) => setNewCategory(e.target.value)}
-            placeholder="Nome da categoria"
-          />
-          <button onClick={handleAddCategory}>Adicionar Categoria</button>
-        </div>
+        <section className="main-categories">
+          <Row justify="space-between">
+            <p className="category-main-title">Categorias</p>
+            <div className="add-category">
+              <Input
+                value={newCategory}
+                onChange={(e) => setNewCategory(e.target.value)}
+                placeholder="Nome da categoria"
+              />
+              <Button onClick={handleAddCategory}>Adicionar Categoria</Button>
+            </div>
+          </Row>
 
-        <ul>
-          {categories.map((cat) => (
-            <li key={cat.id} style={{ marginBottom: "1rem", border: "1px solid #ccc", padding: "1rem" }}>
-              <div>
-                <strong>{cat.name}</strong>{" "}
-                <button onClick={() => handleDeleteCategory(cat.id)}>Remover Categoria</button>
-              </div>
-
-              {/* Seção de produtos para a categoria */}
-              <div style={{ marginLeft: "1rem", marginTop: "0.5rem" }}>
-                <h3>Produtos</h3>
-                {productsMap[cat.id] ? (
-                  <ul>
-                    {productsMap[cat.id].map((prod) => (
-                      <li key={prod.id}>
-                        {prod.name} - R$ {prod.price}{" "}
-                        <button onClick={() => handleDeleteProduct(cat.id, prod.id!)}>Remover Produto</button>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <div>Carregando produtos...</div>
-                )}
-
-                {/* Formulário para adicionar um novo produto na categoria */}
-                <div style={{ marginTop: "0.5rem" }}>
-                  <input
-                    type="text"
-                    placeholder="Nome do produto"
-                    value={newProductInputs[cat.id]?.name || ""}
-                    onChange={(e) =>
-                      setNewProductInputs((prev) => ({
-                        ...prev,
-                        [cat.id]: { ...prev[cat.id], name: e.target.value },
-                      }))
-                    }
-                  />
-                  <input
-                    type="number"
-                    placeholder="Preço"
-                    value={newProductInputs[cat.id]?.price || ""}
-                    onChange={(e) =>
-                      setNewProductInputs((prev) => ({
-                        ...prev,
-                        [cat.id]: { ...prev[cat.id], price: Number(e.target.value) },
-                      }))
-                    }
-                  />
-                  <input
-                    type="text"
-                    placeholder="Descrição"
-                    value={newProductInputs[cat.id]?.description || ""}
-                    onChange={(e) =>
-                      setNewProductInputs((prev) => ({
-                        ...prev,
-                        [cat.id]: { ...prev[cat.id], description: e.target.value },
-                      }))
-                    }
-                  />
-                  <input
-                    type="text"
-                    placeholder="URL da imagem"
-                    value={newProductInputs[cat.id]?.imageUrl || ""}
-                    onChange={(e) =>
-                      setNewProductInputs((prev) => ({
-                        ...prev,
-                        [cat.id]: { ...prev[cat.id], imageUrl: e.target.value },
-                      }))
-                    }
-                  />
-                  <button onClick={() => handleAddProduct(cat.id)}>Adicionar Produto</button>
+          <ul style={{ marginTop: 20 }}>
+            {categories.map((cat) => (
+              <li key={cat.id} style={{ marginBottom: "1rem", border: "1px solid #ccc", padding: "1rem" }}>
+                <div>
+                  <strong>{cat.name}</strong>{" "}
+                  <Button onClick={() => handleDeleteCategory(cat.id)}>Remover Categoria</Button>
                 </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </main>
+
+                {/* Seção de produtos para a categoria */}
+                <div style={{ marginLeft: "1rem", marginTop: "0.5rem" }}>
+                  <h3>Produtos</h3>
+                  {productsMap[cat.id] ? (
+                    <ul>
+                      {productsMap[cat.id].map((prod) => (
+                        <li key={prod.id}>
+                          {prod.name} - R$ {prod.price}{" "}
+                          <Button onClick={() => handleDeleteProduct(cat.id, prod.id!)}>Remover Produto</Button>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <div>Carregando produtos...</div>
+                  )}
+
+                  {/* Formulário para adicionar um novo produto na categoria */}
+                  <div style={{ marginTop: "0.5rem" }}>
+                    <Input
+                      type="text"
+                      placeholder="Nome do produto"
+                      value={newProductInputs[cat.id]?.name || ""}
+                      onChange={(e) =>
+                        setNewProductInputs((prev) => ({
+                          ...prev,
+                          [cat.id]: { ...prev[cat.id], name: e.target.value },
+                        }))
+                      }
+                    />
+                    <Input
+                      type="number"
+                      placeholder="Preço"
+                      value={newProductInputs[cat.id]?.price || ""}
+                      onChange={(e) =>
+                        setNewProductInputs((prev) => ({
+                          ...prev,
+                          [cat.id]: { ...prev[cat.id], price: Number(e.target.value) },
+                        }))
+                      }
+                    />
+                    <Input
+                      type="text"
+                      placeholder="Descrição"
+                      value={newProductInputs[cat.id]?.description || ""}
+                      onChange={(e) =>
+                        setNewProductInputs((prev) => ({
+                          ...prev,
+                          [cat.id]: { ...prev[cat.id], description: e.target.value },
+                        }))
+                      }
+                    />
+                    <Input
+                      type="text"
+                      placeholder="URL da imagem"
+                      value={newProductInputs[cat.id]?.imageUrl || ""}
+                      onChange={(e) =>
+                        setNewProductInputs((prev) => ({
+                          ...prev,
+                          [cat.id]: { ...prev[cat.id], imageUrl: e.target.value },
+                        }))
+                      }
+                    />
+                    <Button onClick={() => handleAddProduct(cat.id)}>Adicionar Produto</Button>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+    </div>
   );
 }

@@ -17,17 +17,17 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
 });
-export default async function Menu() {
+export default function Menu() {
   return (
     <Row className="menu-wrapper">
       <Col xs={24} xl={12} className="main-menu">
         <div className="content">
           <HeaderMenu />
           <Image
-            src="/assets/image.png"
+            src="/assets/default-menu.jpg"
             alt="imagem"
-            width={1400}
-            height={1400}
+            width={1000}
+            height={1100}
           />
           <div className="menu-name">
             <p className={`name ${forum.className}`}>
