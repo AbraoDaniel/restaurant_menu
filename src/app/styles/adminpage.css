@@ -1,20 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Forum&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 .admin-control {
   min-height: 100dvh;
+  background-color: var(--default-background-color) !important;
 
-  .main-page {
-    background-color: rgb(59, 53, 59);
-    padding: 100px;
+  .admin-sider {
+    .ant-layout-sider-trigger {
+      background-color: var(--sider-header-color) !important;
+    }
+
+    background-color: var(--sider-background-color) !important;
+    height: 100dvh !important;
 
     .panel-title {
-      font-size: 40px;
+      background-color: var(--sider-header-color);
+      height: 80px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .admin-panel {
+        white-space: break-spaces;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: var(--default-text-color);
+        font-size: 30px;
+        text-shadow: 1px 1px 10px black;
+      }
+    }
+
+    .menu-items {
+      background-color: transparent;
+
+      .ant-menu-item.ant-menu-item-selected {
+        background-color: var(--sider-header-color);
+        color: var(--default-text-color);
+        font-weight: 600;
+      }
+    }
+  }
+
+  .main-page {
+    width: 100%;
+    height: 100%;
+    padding: 50px;
+
+    .panel-title {
+      font-size: 50px;
       text-align: center;
       margin-bottom: 20px;
+      color: var(--default-text-color);
     }
 
     .main-categories {
+      height: 100%;
+      border-radius: 20px;
+      overflow-y: auto;
+
+      .ant-spin-dot.ant-spin-dot-spin {
+        color: var(--default-background-color) !important;
+      }
+
+      .list-cards {
+        background-color: #f5f5f5;
+        border-color: var(--default-border-color);
+        margin-bottom: 10px;
+
+        .ant-list-header {
+          border-block-end: 1px solid var(--default-border-color);
+        }
+
+        .dots {
+          flex-grow: 1;
+          border-bottom: 1px dashed var(--default-border-color);
+          height: 0.8em;
+          margin: 0 5px;
+        }
+
+        .item-name,
+        .item-price {
+          font-family: "Forum", sans-serif;
+          text-transform: uppercase;
+          font-size: 25px;
+        }
+
+        .item-description {
+          font-family: "Inter", sans-serif;
+          font-weight: 350;
+          font-size: 14px;
+          margin-top: 10px;
+        }
+      }
+
+      .category-title {
+        display: flex;
+        align-items: center;
+
+        svg {
+          font-size: 25px;
+          margin-top: 32px;
+          margin-left: 10px;
+          cursor: pointer;
+          color: var(--default-background-color);
+        }
+
+        svg:hover {
+          color: rebeccapurple;
+        }
+      }
+
+      .category-list-title {
+        display: flex;
+        align-items: center;
+
+        svg {
+          font-size: 20px;
+          margin-left: 10px;
+          cursor: pointer;
+          color: var(--default-background-color);
+        }
+
+        svg:hover {
+          color: rebeccapurple;
+        }
+      }
+
       .category-main-title {
-        font-size: 30px;
-        color: var(--default-text-color);
+        margin-top: 30px;
+        margin-left: 20px;
+        font-size: 35px;
+        color: var(--default-background-color);
       }
 
       .add-category {

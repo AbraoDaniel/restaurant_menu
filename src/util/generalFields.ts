@@ -1,7 +1,7 @@
 export const pages = [
-  { key: 'menu', label: 'MENU' },
-  { key: 'about', label: 'SOBRE' },
-  { key: 'contacts', label: 'CONTATOS' }
+  { key: 'menu', label: 'MENU', image: '/assets/menu_1.jpg' },
+  { key: 'about', label: 'SOBRE', image: '/assets/menu_3.jpg' },
+  { key: 'contacts', label: 'CONTATOS', image: '/assets/menu_2.jpg' }
 ]
 
 
@@ -36,6 +36,16 @@ export const menuItems = [
       { image: '/assets/foods/special/seafoods.jpg', name: 'Spaghetti di Mare', price: '20', description: 'Uma deliciosa combinação de espaguete com camarões suculentos, tomate cereja e ervas frescas.' },
       { image: '/assets/foods/special/seafoods.jpg', name: 'Spaghetti di Mare', price: '20', description: 'Uma deliciosa combinação de espaguete com camarões suculentos, tomate cereja e ervas frescas.' },
       { image: '/assets/foods/special/seafoods.jpg', name: 'Spaghetti di Mare', price: '20', description: 'Uma deliciosa combinação de espaguete com camarões suculentos, tomate cereja e ervas frescas.' },
+    ]
+  },
+  {
+    category: 'DRINKS', items: [
+      { image: '/assets/drinks/image_1.jpg', name: 'Negroni Affumicato', price: '20', description: 'Uma versão sofisticada do clássico Negroni, este coquetel é infusionado com notas defumadas, ervas frescas e um toque cítrico. Perfeito para quem aprecia sabores intensos e marcantes.' },
+      { image: '/assets/drinks/image_2.jpg', name: 'Fragola Spritz', price: '20', description: 'Um coquetel refrescante à base de espumante e morangos frescos, combinando suavidade e doçura com um toque cítrico. Ideal para dias ensolarados e momentos leves.' },
+      { image: '/assets/drinks/image_3.jpg', name: 'Sunset Bellissimo', price: '20', description: 'Uma explosão de frescor e sabor, este drink mistura morangos, hortelã e limão em uma combinação vibrante e tropical. Perfeito para brindar a qualquer ocasião especial.' },
+      { image: '/assets/drinks/image_1.jpg', name: 'Negroni Affumicato', price: '20', description: 'Uma versão sofisticada do clássico Negroni, este coquetel é infusionado com notas defumadas, ervas frescas e um toque cítrico. Perfeito para quem aprecia sabores intensos e marcantes.' },
+      { image: '/assets/drinks/image_2.jpg', name: 'Fragola Spritz', price: '20', description: 'Um coquetel refrescante à base de espumante e morangos frescos, combinando suavidade e doçura com um toque cítrico. Ideal para dias ensolarados e momentos leves.' },
+      { image: '/assets/drinks/image_3.jpg', name: 'Sunset Bellissimo', price: '20', description: 'Uma explosão de frescor e sabor, este drink mistura morangos, hortelã e limão em uma combinação vibrante e tropical. Perfeito para brindar a qualquer ocasião especial.' },
     ]
   }
 ]

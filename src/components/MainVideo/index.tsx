@@ -2,7 +2,7 @@ export default function MainVideo() {
   return (
     <div className="main-video" style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
       <video
-        src="/assets/video.mp4"
+        src="/assets/main_video.mp4"
         autoPlay
         loop
         muted

@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
       name,
       price,
       description,
-      imageUrl,
+      imageUrl, // A URL gerada pelo Supabase é salva aqui
       category_id
     });
 
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// GET para listar todos os produtos ou filtrar por categoria
+// GET para listar produtos (ou filtrar por categoria)
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);

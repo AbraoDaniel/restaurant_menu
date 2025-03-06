@@ -19,7 +19,7 @@ export default function AddressCard() {
         <Row style={{ width: '100%', display: 'inline-flex', justifyContent: 'center', alignItems: 'center' }} justify="center">
           <div className={`hour-title ${forum.className}`} >
             <div className="teste" />
-            <p>{'HORÁRIOS'}</p>
+            <p>{'INFORMAÇÕES'}</p>
             <div className="teste" />
           </div>
         </Row>

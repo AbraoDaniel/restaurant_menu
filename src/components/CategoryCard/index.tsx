@@ -11,13 +11,14 @@ const inter = Inter({
 interface ICategoryCard {
   path: string;
   label: string
+  image: string
 }
-export default function CategoryCard({path, label}: ICategoryCard) {
+export default function CategoryCard({ path, label, image }: ICategoryCard) {
   return (
     <div className="category-card" style={{ position: "relative", width: "100%", height: "100%" }}>
       <Link href={`/${path}`}>
-        <Image 
-          src="/assets/videoframe.png"
+        <Image
+          src={image}
           alt="Categoria"
           fill
           style={{ objectFit: "cover" }}

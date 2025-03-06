@@ -40,12 +40,12 @@ export default function Home() {
         <div className="main-text">
           <Row>
             <p className={`main-title ${forum.className}`}>
-              {'SUSHI'}
+              {'SAPORI'}
             </p>
           </Row>
           <Row>
             <p className={`main-title ${forum.className}`}>
-              {'SENSATION'}
+              {'D’ORO'}
             </p>
           </Row>
         </div>
@@ -54,7 +54,7 @@ export default function Home() {
         <div className="main-categories">
           {pages?.map((page) => {
             return (
-                <CategoryCard key={page?.key} path={page?.key} label={page?.label} />
+              <CategoryCard key={page?.key} path={page?.key} label={page?.label} image={page?.image} />
             )
           })}
         </div>
