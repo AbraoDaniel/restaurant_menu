@@ -15,14 +15,18 @@ const inter = Inter({
   display: "swap",
 });
 
+type Product = {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+  imageUrl: string;
+  category_id: string;
+};
+
 interface IMenuCategory {
   category: string,
-  items: {
-    image: string,
-    name: string,
-    price: string,
-    description: string
-  }[]
+  items: Product[]
 }
 
 export default function MenuCategory({ category, items }: IMenuCategory) {

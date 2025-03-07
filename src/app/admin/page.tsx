@@ -11,6 +11,8 @@ import type { MenuProps } from 'antd'
 import { Content } from "antd/es/layout/layout"
 import NewCatalogModal from "@/components/NewCatalogModal"
 import CategoriesList from "@/components/CategoriesList"
+import Link from "next/link"
+import { useMessageFunctions } from "@/components/Message"
 const forum = Forum({
   weight: "400",
   subsets: ["latin"],
@@ -57,11 +59,21 @@ const items: MenuItem[] = [
 ]
 
 export default function AdminPage() {
+  const { messageSuccess, contextHolder } = useMessageFunctions()
   const [loading, setLoading] = useState(true)
   const [showAddCategoryModal, setShowAddCategoryModal] = useState(false)
   const [collapsedMenu, setCollapsedMenu] = useState(false)
   const [categories, setCategories] = useState<Category[]>([])
   const [productsMap, setProductsMap] = useState<{ [key: string]: Product[] }>({})
+  const [currentCategory, setCurrentCategory] = useState<Category>({ id: '0', name: '' })
+  const [successMessage, setSuccessMessage] = useState(false)
+
+  useEffect(() => {
+    if (successMessage) {
+      messageSuccess("Categoria criada com sucesso!")
+      setSuccessMessage(false)
+    }
+  }, [successMessage])
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -105,11 +117,14 @@ export default function AdminPage() {
 
   return (
     <Layout className="admin-control">
-      {showAddCategoryModal && <NewCatalogModal fetchCategories={fetchCategories} handleCancel={() => setShowAddCategoryModal(false)} />}
+      {contextHolder}
+      {showAddCategoryModal && <NewCatalogModal setShowCatalogMessage={setSuccessMessage} fetchCategories={fetchCategories} handleCancel={() => setShowAddCategoryModal(false)} />}
       <Sider collapsible collapsed={collapsedMenu} onCollapse={(value) => setCollapsedMenu(value)} className="admin-sider">
         <div className="panel-title">
-          <p className={`admin-panel ${forum.className}`}>{
-            collapsedMenu ? <MdAdminPanelSettings style={{ fontSize: 50 }} /> : (<><MdAdminPanelSettings style={{ fontSize: 40 }} />{'danti.'}</>)}</p>
+          <Link href="/" style={{ cursor: 'pointer' }}>
+            <p className={`admin-panel ${forum.className}`} >{
+              collapsedMenu ? <MdAdminPanelSettings style={{ fontSize: 50 }} /> : (<><MdAdminPanelSettings style={{ fontSize: 40 }} />{'danti.'}</>)}</p>
+          </Link>
         </div>
         <div className="demo-logo-vertical" />
         <Menu defaultSelectedKeys={['product_manage']} mode="inline" items={items} className={`menu-items ${inter.className}`} />
@@ -123,7 +138,7 @@ export default function AdminPage() {
                   <p className={`category-main-title ${forum.className}`}>Categorias</p>
                   <MdAddCircleOutline onClick={() => setShowAddCategoryModal(true)} />
                 </Row>
-                <CategoriesList categories={categories} productsMap={productsMap} fetchCategories={fetchCategories} fetchProducts={fetchProducts} />
+                <CategoriesList setShowAddCategoryModal={setShowAddCategoryModal} categories={categories} productsMap={productsMap} fetchCategories={fetchCategories} fetchProducts={fetchProducts} />
               </Content>
             </Spin>
           </Layout>

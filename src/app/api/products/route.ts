@@ -1,7 +1,7 @@
 // src/app/api/products/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/util/firebase";
-import { collection, addDoc, getDocs, query, where, DocumentData, Query } from "firebase/firestore";
+import { collection, addDoc, getDocs, query, where, DocumentData, Query, doc, updateDoc, deleteDoc } from "firebase/firestore";
 
 export async function POST(req: NextRequest) {
   try {
@@ -50,5 +50,46 @@ export async function GET(req: NextRequest) {
   } catch (error: any) {
     console.error("Erro ao buscar produtos:", error);
     return new NextResponse("Erro ao buscar produtos: " + error.message, { status: 500 });
+  }
+}
+
+export async function PUT(req: NextRequest) {
+  try {
+    const { id, name, price, description, imageUrl, category_id } = await req.json();
+
+    if (!id || !name || !category_id) {
+      return new NextResponse("Campos 'id', 'name' e 'category_id' são obrigatórios", { status: 400 });
+    }
+
+    const productRef = doc(db, "products", id);
+    await updateDoc(productRef, {
+      name,
+      price,
+      description,
+      imageUrl,
+      category_id,
+    });
+
+    return new NextResponse("Produto atualizado com sucesso", { status: 200 });
+  } catch (error: any) {
+    console.error("Erro ao atualizar produto:", error);
+    return new NextResponse("Erro ao atualizar produto: " + error.message, { status: 500 });
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const { id } = await req.json();
+    if (!id) {
+      return new NextResponse("Campo 'id' é obrigatório", { status: 400 });
+    }
+
+    const productRef = doc(db, "products", id);
+    await deleteDoc(productRef);
+
+    return new NextResponse("Produto deletado com sucesso", { status: 200 });
+  } catch (error: any) {
+    console.error("Erro ao deletar produto:", error);
+    return new NextResponse("Erro ao deletar produto: " + error.message, { status: 500 });
   }
 }

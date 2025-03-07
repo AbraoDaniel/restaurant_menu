@@ -1,5 +1,5 @@
 export const pages = [
-  { key: 'menu', label: 'MENU', image: '/assets/menu_1.jpg' },
+  { key: 'menu', label: 'CARDÁPIO', image: '/assets/menu_1.jpg' },
   { key: 'about', label: 'SOBRE', image: '/assets/menu_3.jpg' },
   { key: 'contacts', label: 'CONTATOS', image: '/assets/menu_2.jpg' }
 ]

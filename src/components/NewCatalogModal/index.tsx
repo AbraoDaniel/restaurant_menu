@@ -1,19 +1,20 @@
 import { Col, Form, Input, Modal, Row } from "antd";
+import { useState } from "react";
 
 interface INewCatalogModal {
   handleCancel: () => void
   fetchCategories: () => void
+  setShowCatalogMessage: (value: boolean) => void
 }
-export default function NewCatalogModal({ handleCancel, fetchCategories }: INewCatalogModal) {
+export default function NewCatalogModal({ handleCancel, fetchCategories, setShowCatalogMessage }: INewCatalogModal) {
   const [categoryForm] = Form.useForm()
+  const [loading, setLoading] = useState(false)
 
   async function handleAddCategory() {
+    setLoading(true)
     const validated = await categoryForm.validateFields()
     const newCategory = validated?.name
-
     if (!newCategory.trim()) return;
-    console.log(validated?.name)
-
     try {
       const res = await fetch("/api/categories", {
         method: "POST",
@@ -21,10 +22,13 @@ export default function NewCatalogModal({ handleCancel, fetchCategories }: INewC
         body: JSON.stringify({ name: newCategory }),
       });
       if (!res.ok) throw new Error("Falha ao criar categoria");
+      setShowCatalogMessage(true)
       handleCancel()
       fetchCategories()
+      setLoading(false)
     } catch (error) {
       console.error(error)
+      setLoading(false)
     }
   }
 
@@ -33,15 +37,20 @@ export default function NewCatalogModal({ handleCancel, fetchCategories }: INewC
       title="Nova Categoria"
       open
       onOk={handleAddCategory}
-      onCancel={handleCancel}
+      onCancel={() => {
+        if (!loading) {
+          handleCancel()
+        }
+      }}
       okText={"Salvar"}
-      okButtonProps={{ style: { backgroundColor: 'rgb(10, 11, 10)' } }}
+      okButtonProps={{ style: { backgroundColor: 'rgb(10, 11, 10)' }, loading: loading }}
+      cancelButtonProps={{ disabled: loading }}
     >
       <Form form={categoryForm}>
         <Row>
           <Col xs={24}>
             <Form.Item label="" name="name" rules={[{ required: true, message: 'Por favor, informe o nome da categoria' }]}>
-              <Input placeholder="Nome da categoria" className="input-form" />
+              <Input placeholder="Nome da categoria" className="input-form" disabled={loading} />
             </Form.Item>
           </Col>
         </Row>

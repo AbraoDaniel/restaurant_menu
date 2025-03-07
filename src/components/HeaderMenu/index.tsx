@@ -17,9 +17,9 @@ const inter = Inter({
 
 const HeaderMenu: React.FC = () => {
   const pageItems = [
-    {key: 'menu', label: 'MENU'},
-    {key: 'about', label: 'SOBRE'},
-    {key: 'contacts', label: 'CONTATOS'},
+    { key: 'menu', label: 'CARDÁPIO' },
+    { key: 'about', label: 'SOBRE' },
+    { key: 'contacts', label: 'CONTATOS' },
   ]
 
   return (
@@ -37,7 +37,7 @@ const HeaderMenu: React.FC = () => {
             return (
               <p className={`menu-item ${inter.className}`} key={item.key}>
                 <Link href={`/${item.key}`}>
-                 {item.label}
+                  {item.label}
                 </Link>
               </p>
             )

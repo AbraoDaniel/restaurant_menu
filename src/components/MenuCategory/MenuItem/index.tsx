@@ -14,13 +14,18 @@ const inter = Inter({
   display: "swap",
 });
 
+type Product = {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+  imageUrl: string;
+  category_id: string;
+};
+
+
 interface IMenuItem {
-  item: {
-    image: string,
-    name: string,
-    price: string,
-    description: string
-  }
+  item: Product
 }
 
 export default function MenuItem({ item }: IMenuItem) {
@@ -28,7 +33,7 @@ export default function MenuItem({ item }: IMenuItem) {
     <Row style={{ width: '100%' }} className="food-exibition">
       <Col xs={5} xl={7} className="category-image">
         <Image
-          src={item?.image}
+          src={item?.imageUrl}
           alt="Categoria"
           fill
           style={{ objectFit: "cover" }}

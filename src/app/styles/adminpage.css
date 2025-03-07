@@ -83,7 +83,6 @@
         .item-name,
         .item-price {
           font-family: "Forum", sans-serif;
-          text-transform: uppercase;
           font-size: 25px;
         }
 
