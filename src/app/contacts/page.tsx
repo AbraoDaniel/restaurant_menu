@@ -21,14 +21,14 @@ const inter = Inter({
 export default function Contacts() {
   return (
     <Row className="contacts-wrapper">
-      <Col xs={12} className="main-menu">
+      <Col xs={24} xl={12} className="main-menu">
         <div className="content">
           <HeaderMenu />
           <Image
             src="/assets/image_2.jpg"
             alt="imagem"
             width={1400}
-            height={1000}
+            height={1200}
           />
           <div className="menu-name">
             <p className={`name ${forum.className}`}>
@@ -37,18 +37,18 @@ export default function Contacts() {
           </div>
         </div>
       </Col>
-      <Col xs={12} className="contacts-info">
+      <Col xs={24} xl={12} className="contacts-info">
         <Row gutter={[16, 16]} style={{ height: '100%', width: '100%' }}>
-          <Col key="hours" xs={12} style={{ height: '49.7%', width: '50%' }}>
+          <Col key="hours" xs={24} lg={12} style={{ height: '49.7%', width: '50%' }}>
             <HoursCard />
           </Col>
-          <Col key="pictures" xs={12} style={{ height: '49.7%', width: '50%' }}>
+          <Col key="pictures" xs={24} lg={12} style={{ height: '49.7%', width: '50%' }}>
             <PicturesCard />
           </Col>
-          <Col key="maps" xs={12} style={{ height: '49.7%', width: '50%' }}>
+          <Col key="maps" xs={24} lg={12} style={{ height: '49.7%', width: '50%' }}>
             <MapsCard />
           </Col>
-          <Col key="address" xs={12} style={{ height: '49.7%', width: '50%' }}>
+          <Col key="address" xs={24} lg={12} style={{ height: '49.7%', width: '50%' }}>
             <AddressCard />
           </Col>
         </Row>

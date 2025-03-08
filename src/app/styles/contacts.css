@@ -3,7 +3,7 @@
 .contacts-wrapper {
   min-height: 100dvh;
   max-height: 100dvh;
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 100%;
   animation: showing 1.5s linear;
 
@@ -29,6 +29,7 @@
         filter: brightness(0.8);
       }
 
+      .menu-about-name,
       .menu-name {
         position: absolute;
         bottom: 10px;
@@ -188,6 +189,7 @@
 
 @media screen and (min-width: 1199px) {
   .contacts-wrapper {
+    overflow: hidden;
     min-height: 100dvh;
     width: 100%;
     animation: showing 1.5s linear;
@@ -214,6 +216,7 @@
           bottom: 200px;
         }
 
+        .menu-about-name,
         .menu-name {
           position: absolute;
           bottom: 10px;
@@ -225,6 +228,7 @@
           }
         }
       }
+
     }
   }
 }
@@ -232,16 +236,63 @@
 
 @media screen and (max-width: 1198px) {
   .contacts-wrapper {
-    .main-menu {
-      .content {
-        .main-header {
-          width: 50% !important;
-        }
+    .contacts-info {
+      .contact-card {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-        .menu-name {
-          left: 50px !important;
+        .hours-wrapper {
+          padding: 10px 24px;
         }
       }
     }
+
+
+    .main-menu {
+      padding: 8px;
+
+      .content {
+        .main-header {
+          width: 90%;
+        }
+
+        .menu-about-name {
+          left: 80px;
+
+          .name {
+            font-size: 80px;
+            text-shadow: 1px 1px 10px black;
+            color: var(--default-text-color);
+          }
+        }
+
+        .menu-name {
+          left: 20px;
+
+          .name {
+            font-size: 65px;
+            text-shadow: 1px 1px 10px black;
+            color: var(--default-text-color);
+          }
+        }
+
+        width: 100%;
+        max-height: 800px;
+        overflow: hidden;
+        position: relative;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+
+        img {
+          position: relative;
+          bottom: 200px;
+        }
+      }
+    }
+
+
   }
 }

@@ -17,23 +17,23 @@ const inter = Inter({
 export default function About() {
   return (
     <Row className="contacts-wrapper">
-      <Col xs={12} className="main-menu">
+      <Col xs={24} xl={12} className="main-menu">
         <div className="content">
           <HeaderMenu />
           <Image
             src="/assets/about.jpg"
             alt="imagem"
             width={1400}
-            height={1000}
+            height={1200}
           />
-          <div className="menu-name">
+          <div className="menu-about-name">
             <p className={`name ${forum.className}`}>
               {'SOBRE'}
             </p>
           </div>
         </div>
       </Col>
-      <Col xs={12} className="contacts-info">
+      <Col xs={24} xl={12} className="contacts-info">
         <Row gutter={[8, 8]} style={{ height: '100%', width: '100%' }}>
           <Col key="6" xs={12} style={{ height: '29%', width: '50%' }}>
             <div className="reduced-card">
@@ -44,7 +44,7 @@ export default function About() {
                   </p>
                 </Row >
                 <Row style={{ width: '100%' }} justify="center" >
-                  <p className={`description ${inter.className}`} style={{ padding: '0px 20px', textAlign: 'center', marginTop: 12, whiteSpace: 'break-spaces', fontSize: 14 }}>
+                  <p className={`description ${inter.className}`} style={{ padding: '0px 20px', textAlign: 'center', marginTop: 12, whiteSpace: 'break-spaces' }}>
                     {"Onde a simplicidade se transforma em sofisticação, e cada refeição se torna uma celebração da vera cucina italiana."}
                   </p>
                 </Row >
@@ -56,8 +56,8 @@ export default function About() {
               <Image
                 src="/assets/foods/pasta/spaghetti.jpg"
                 alt="Categoria"
-                width={450}
-                height={250}
+                width={490}
+                height={420}
                 style={{ objectFit: "cover", marginTop: 30 }}
               />
             </div>
@@ -120,7 +120,7 @@ export default function About() {
                 src="/assets/default-menu-2.jpg"
                 alt="Categoria"
                 width={500}
-                height={500}
+                height={650}
                 style={{ objectFit: "cover", marginBottom: 40 }}
               />
             </div>
@@ -134,7 +134,7 @@ export default function About() {
                   </p>
                 </Row >
                 <Row style={{ width: '100%' }} justify="center" >
-                  <p className={`description ${inter.className}`} style={{ padding: '0px 20px', textAlign: 'center', marginTop: 12, whiteSpace: 'break-spaces', fontSize: 14 }}>
+                  <p className={`description ${inter.className}`} style={{ padding: '0px 20px', textAlign: 'center', marginTop: 12, whiteSpace: 'break-spaces', maxWidth: '100%', overflowY: 'auto' }}>
                     {"Fundado com a paixão pela autêntica culinária italiana, o Danti nasceu do desejo de trazer os verdadeiros sabores da Itália para a mesa.\n\nInspirado nas tradições das trattorias familiares e na riqueza gastronômica das regiões italianas, o restaurante combina técnicas clássicas com um toque contemporâneo.\n\nDesde o primeiro dia, nosso compromisso tem sido proporcionar uma experiência única, onde cada prato conta uma história de tradição, qualidade e amor pela comida"}
                   </p>
                 </Row >
