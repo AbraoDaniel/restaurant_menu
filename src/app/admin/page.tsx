@@ -3,16 +3,18 @@
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "@/util/firebase"
 import { useEffect, useState } from "react"
-import { Row, Layout, Menu, Spin } from "antd"
+import { Row, Layout, Menu, Spin, } from "antd"
 import { Forum, Inter } from "next/font/google"
-import { MdAddCircleOutline, MdAdminPanelSettings, MdFormatListBulleted } from "react-icons/md"
-import Sider from "antd/es/layout/Sider"
+import { MdAddCircleOutline, MdAdminPanelSettings, MdFormatListBulleted, MdMenu } from "react-icons/md"
 import type { MenuProps } from 'antd'
-import { Content } from "antd/es/layout/layout"
 import NewCatalogModal from "@/components/NewCatalogModal"
 import CategoriesList from "@/components/CategoriesList"
 import Link from "next/link"
 import { useMessageFunctions } from "@/components/Message"
+import HeaderDrawer from "@/components/HeaderDrawer"
+import { adminItems } from "@/util/generalFields"
+
+const { Header, Content, Sider } = Layout;
 const forum = Forum({
   weight: "400",
   subsets: ["latin"],
@@ -62,6 +64,7 @@ export default function AdminPage() {
   const { messageSuccess, contextHolder } = useMessageFunctions()
   const [loading, setLoading] = useState(true)
   const [showAddCategoryModal, setShowAddCategoryModal] = useState(false)
+  const [showHeaderDrawer, setShowHeaderDrawer] = useState(false)
   const [collapsedMenu, setCollapsedMenu] = useState(false)
   const [categories, setCategories] = useState<Category[]>([])
   const [productsMap, setProductsMap] = useState<{ [key: string]: Product[] }>({})
@@ -119,6 +122,7 @@ export default function AdminPage() {
     <Layout className="admin-control">
       {contextHolder}
       {showAddCategoryModal && <NewCatalogModal setShowCatalogMessage={setSuccessMessage} fetchCategories={fetchCategories} handleCancel={() => setShowAddCategoryModal(false)} />}
+      {showHeaderDrawer && <HeaderDrawer setOpenHeaderDrawer={setShowHeaderDrawer} items={adminItems} />}
       <Sider collapsible collapsed={collapsedMenu} onCollapse={(value) => setCollapsedMenu(value)} className="admin-sider">
         <div className="panel-title">
           <Link href="/" style={{ cursor: 'pointer' }}>
@@ -130,6 +134,17 @@ export default function AdminPage() {
         <Menu defaultSelectedKeys={['product_manage']} mode="inline" items={items} className={`menu-items ${inter.className}`} />
       </Sider>
       <div style={{ width: '100%', height: '100dvh' }}>
+        <Header className="admin-header">
+          <Row style={{ width: '100%' }} justify="center">
+            <MdMenu className="menu-icon" onClick={() => setShowHeaderDrawer(true)} />
+            <Link href="/" style={{ cursor: 'pointer' }}>
+              <p className={`admin-panel ${forum.className}`} >
+                <MdAdminPanelSettings style={{ fontSize: 40 }} />
+                {'danti.'}
+              </p>
+            </Link>
+          </Row>
+        </Header>
         <div className="main-page">
           <Layout className="main-categories">
             <Spin spinning={loading} className="spin-loading">

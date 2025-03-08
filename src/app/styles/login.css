@@ -82,3 +82,38 @@
     }
   }
 }
+
+@media screen and (min-width: 1199px) {
+  .login {
+    .content {
+      width: 30%;
+      height: 50%;
+    }
+  }
+}
+
+@media screen and (min-width: 1001px) and (max-width: 1198px) {
+  .login {
+    .content {
+      width: 60%;
+      height: 60%;
+    }
+  }
+}
+
+@media screen and (min-width: 701px) and (max-width: 1000px) {
+  .login {
+    .content {
+      width: 60%;
+      height: 50%;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .login {
+    .content {
+      width: 90%;
+    }
+  }
+}

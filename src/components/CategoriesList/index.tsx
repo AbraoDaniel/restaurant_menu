@@ -51,6 +51,7 @@ export default function CategoriesList({ categories, productsMap, fetchCategorie
   const [currentProduct, setCurrentProduct] = useState<any>()
   const { messageSuccess, contextHolder } = useMessageFunctions()
 
+
   const [orderedCategories, setOrderedCategories] = useState<Category[]>(categories);
 
   useEffect(() => {
@@ -140,7 +141,7 @@ export default function CategoriesList({ categories, productsMap, fetchCategorie
                   renderItem={(item, index) => (
                     <List.Item key={`${item?.id}_${index}`}>
                       <Row style={{ width: '100%', display: 'flex', alignItems: 'center' }}>
-                        <Col xs={4}>
+                        <Col xs={24} xl={4}>
                           <Image
                             src={item?.imageUrl || "/assets/about.jpg"}
                             alt={`foto do produto: ${item?.name}`}
@@ -149,21 +150,22 @@ export default function CategoriesList({ categories, productsMap, fetchCategorie
                             style={{ borderRadius: 20, objectFit: "cover" }}
                           />
                         </Col>
-                        <Col xs={20}>
+                        <Col xs={24} xl={20}>
                           <Row className="product-header" align="middle" style={{ width: '100%' }}>
-                            <Col style={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
-                              <p className={`item-name ${forum.className}`} style={{ margin: 0 }}>
+                            <Col style={{ flexGrow: 1, display: 'flex', alignItems: 'center' }} className="header-col">
+                              <Typography.Text ellipsis={{ tooltip: item?.name }} className={`item-name ${forum.className}`} style={{ margin: 0 }}>
                                 {item?.name}
-                              </p>
+                              </Typography.Text>
                               <p className="dots" style={{ margin: '0 5px' }}></p>
                               <p className={`item-price ${forum.className}`} style={{ margin: 0 }}>
                                 {`R$ ${item?.price}`}
                               </p>
                             </Col>
-                            <Col style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <Col style={{ display: 'flex', alignItems: 'center', gap: '10px' }} className="action-icons">
                               <MdCreate
                                 style={{ fontSize: 20, cursor: 'pointer', marginLeft: 100 }}
                                 onClick={() => {
+                                  setCurrentCategory(cat)
                                   setCurrentProduct(item);
                                   setShowAddProductModal(true);
                                 }}

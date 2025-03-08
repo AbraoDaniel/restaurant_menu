@@ -72,3 +72,7 @@ export const pictures = [
   { src: "/assets/contacts_page/third.jpg", link: "https://www.linkedin.com/in/daniel-alexsandro-abr%C3%A3o-2002/" },
   { src: "/assets/contacts_page/fourth.jpg", link: "https://www.linkedin.com/in/daniel-alexsandro-abr%C3%A3o-2002/" }
 ]
+
+export const adminItems = [
+  { key: 'manage_products', label: 'Gestão de produtos' },
+]

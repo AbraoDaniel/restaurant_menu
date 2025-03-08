@@ -52,6 +52,28 @@
         font-size: 11px;
         max-height: 210px;
         overflow-y: auto;
+
+        scrollbar-color: #b5b5b5 #e7e7e7;
+
+        &::-webkit-scrollbar {
+          width: 8px;
+          height: 5px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: #686868;
+          border-radius: 10px;
+          cursor: grab;
+        }
+
+        &::-webkit-scrollbar-track {
+          background-color: #e7e7e7;
+          border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+          background-color: #888888;
+        }
       }
     }
   }

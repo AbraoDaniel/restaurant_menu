@@ -45,7 +45,7 @@ export default function NewProductModal({ handleCancel, category, fetchProducts,
   const { messageError, contextHolder } = useMessageFunctions()
 
   useEffect(() => {
-    if (product) {
+    if (product?.id) {
       const splittedUrl = product.imageUrl.split('.')
       const imageExtension = splittedUrl[splittedUrl.length - 1]
       productForm.setFieldsValue({
@@ -62,7 +62,7 @@ export default function NewProductModal({ handleCancel, category, fetchProducts,
         ],
       });
     }
-  }, [product, productForm]);
+  }, [product?.id, productForm]);
 
   const uploadImage = async (): Promise<string | null> => {
     if (!file) return product ? product.imageUrl : null;
@@ -146,7 +146,7 @@ export default function NewProductModal({ handleCancel, category, fetchProducts,
     <>
       {contextHolder}
       <Modal
-        title={`Adicionar produto na categoria ${category?.name}`}
+        title={product?.id ? `Editar produto da categoria ${category?.name}` : `Adicionar produto na categoria ${category?.name}`}
         open
         onOk={handleSubmit}
         onCancel={handleCancel}
