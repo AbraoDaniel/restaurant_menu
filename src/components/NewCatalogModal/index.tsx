@@ -1,34 +1,61 @@
 import { Col, Form, Input, Modal, Row } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
+type Category = {
+  id: string
+  name: string
+}
 interface INewCatalogModal {
   handleCancel: () => void
   fetchCategories: () => void
   setShowCatalogMessage: (value: boolean) => void
+  category?: Category | null
 }
-export default function NewCatalogModal({ handleCancel, fetchCategories, setShowCatalogMessage }: INewCatalogModal) {
+export default function NewCatalogModal({ handleCancel, fetchCategories, setShowCatalogMessage, category }: INewCatalogModal) {
   const [categoryForm] = Form.useForm()
   const [loading, setLoading] = useState(false)
 
+  useEffect(() => {
+    if (category) {
+      categoryForm.setFieldsValue({ name: category.name });
+    } else {
+      categoryForm.resetFields();
+    }
+  }, [category, categoryForm]);
+
   async function handleAddCategory() {
-    setLoading(true)
-    const validated = await categoryForm.validateFields()
-    const newCategory = validated?.name
-    if (!newCategory.trim()) return;
+    setLoading(true);
+    const validated = await categoryForm.validateFields();
+    const newCategoryName = validated?.name;
+    if (!newCategoryName.trim()) {
+      setLoading(false);
+      return;
+    }
     try {
-      const res = await fetch("/api/categories", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: newCategory }),
-      });
-      if (!res.ok) throw new Error("Falha ao criar categoria");
-      setShowCatalogMessage(true)
-      handleCancel()
-      fetchCategories()
-      setLoading(false)
+      let res;
+      if (category) {
+        // Atualização de categoria (edição)
+        res = await fetch("/api/categories", {
+          method: "PUT", // ou o método que seu backend espera para editar
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id: category.id, name: newCategoryName }),
+        });
+      } else {
+        // Criação de nova categoria
+        res = await fetch("/api/categories", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name: newCategoryName }),
+        });
+      }
+      if (!res.ok) throw new Error("Falha ao salvar categoria");
+      setShowCatalogMessage(true);
+      handleCancel();
+      fetchCategories();
+      setLoading(false);
     } catch (error) {
-      console.error(error)
-      setLoading(false)
+      console.error(error);
+      setLoading(false);
     }
   }
 

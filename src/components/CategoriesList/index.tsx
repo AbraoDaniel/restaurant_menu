@@ -42,9 +42,10 @@ interface ICategoriesList {
   fetchCategories: () => void
   fetchProducts: (id: string) => void
   setShowAddCategoryModal: (value: boolean) => void
+  onEditCategory: (category: Category) => void
 }
 
-export default function CategoriesList({ categories, productsMap, fetchCategories, fetchProducts, setShowAddCategoryModal }: ICategoriesList) {
+export default function CategoriesList({ categories, productsMap, fetchCategories, fetchProducts, setShowAddCategoryModal, onEditCategory }: ICategoriesList) {
   const [loadingOperation, setLoadingOperation] = useState(false)
   const [showAddProductModal, setShowAddProductModal] = useState(false)
   const [currentCategory, setCurrentCategory] = useState<Category>({ id: '0', name: '' })
@@ -63,7 +64,6 @@ export default function CategoriesList({ categories, productsMap, fetchCategorie
     const [removed] = updated.splice(dragIndex, 1);
     updated.splice(hoverIndex, 0, removed);
     setOrderedCategories(updated);
-    // Se desejar, aqui você pode disparar uma função para salvar a nova ordem no backend
   }, [orderedCategories]);
 
   useEffect(() => {
@@ -131,6 +131,10 @@ export default function CategoriesList({ categories, productsMap, fetchCategorie
                       setShowAddProductModal(true)
                     }} />
 
+                    <MdCreate
+                      style={{ fontSize: 20, cursor: 'pointer', marginLeft: 10 }}
+                      onClick={() => onEditCategory(cat)}
+                    />
                     <DeleteConfirmationPopover
                       children={
                         <MdDelete style={{ fontSize: 20, cursor: 'pointer' }} className="delete-popover" />

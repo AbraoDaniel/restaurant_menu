@@ -68,7 +68,7 @@ export default function AdminPage() {
   const [collapsedMenu, setCollapsedMenu] = useState(false)
   const [categories, setCategories] = useState<Category[]>([])
   const [productsMap, setProductsMap] = useState<{ [key: string]: Product[] }>({})
-  const [currentCategory, setCurrentCategory] = useState<Category>({ id: '0', name: '' })
+  const [currentCategory, setCurrentCategory] = useState<Category | undefined>({ id: '0', name: '' })
   const [successMessage, setSuccessMessage] = useState(false)
 
   useEffect(() => {
@@ -117,11 +117,21 @@ export default function AdminPage() {
     }
   }
 
+  function handleEditCategory(category: Category) {
+    setCurrentCategory(category);
+    setShowAddCategoryModal(true);
+  }
+
+  function handleNewCategory() {
+    setCurrentCategory(undefined)
+    setShowAddCategoryModal(true);
+  }
+
 
   return (
     <Layout className="admin-control">
       {contextHolder}
-      {showAddCategoryModal && <NewCatalogModal setShowCatalogMessage={setSuccessMessage} fetchCategories={fetchCategories} handleCancel={() => setShowAddCategoryModal(false)} />}
+      {showAddCategoryModal && <NewCatalogModal category={currentCategory} setShowCatalogMessage={setSuccessMessage} fetchCategories={fetchCategories} handleCancel={() => setShowAddCategoryModal(false)} />}
       {showHeaderDrawer && <HeaderDrawer setOpenHeaderDrawer={setShowHeaderDrawer} items={adminItems} />}
       <Sider collapsible collapsed={collapsedMenu} onCollapse={(value) => setCollapsedMenu(value)} className="admin-sider">
         <div className="panel-title">
@@ -151,9 +161,10 @@ export default function AdminPage() {
               <Content style={{ margin: '0 16px' }} className="main-content" >
                 <Row className="category-title">
                   <p className={`category-main-title ${forum.className}`}>Categorias</p>
-                  <MdAddCircleOutline onClick={() => setShowAddCategoryModal(true)} />
+                  <MdAddCircleOutline onClick={handleNewCategory} />
                 </Row>
-                <CategoriesList setShowAddCategoryModal={setShowAddCategoryModal} categories={categories} productsMap={productsMap} fetchCategories={fetchCategories} fetchProducts={fetchProducts} />
+                <CategoriesList setShowAddCategoryModal={setShowAddCategoryModal} categories={categories} productsMap={productsMap} fetchCategories={fetchCategories} fetchProducts={fetchProducts} onEditCategory={handleEditCategory}
+                />
               </Content>
             </Spin>
           </Layout>

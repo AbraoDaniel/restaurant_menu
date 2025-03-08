@@ -1,7 +1,7 @@
 // src/app/api/categories/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/util/firebase";
-import { collection, addDoc, getDocs, doc, deleteDoc, query, where, serverTimestamp, orderBy } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc, deleteDoc, query, where, serverTimestamp, orderBy, updateDoc } from "firebase/firestore";
 
 export async function POST(req: NextRequest) {
   try {
@@ -60,5 +60,23 @@ export async function DELETE(req: NextRequest) {
   } catch (error: any) {
     console.error("Erro ao deletar categoria:", error);
     return new NextResponse("Erro ao deletar categoria: " + error.message, { status: 500 });
+  }
+}
+
+export async function PUT(req: NextRequest) {
+  try {
+    const { id, name } = await req.json();
+
+    if (!id || !name) {
+      return new NextResponse("Campos 'id' e 'name' são obrigatórios", { status: 400 });
+    }
+
+    const categoryRef = doc(db, "categories", id);
+    await updateDoc(categoryRef, { name, updatedAt: serverTimestamp() });
+
+    return new NextResponse("Categoria atualizada com sucesso", { status: 200 });
+  } catch (error: any) {
+    console.error("Erro ao atualizar categoria:", error);
+    return new NextResponse("Erro ao atualizar categoria: " + error.message, { status: 500 });
   }
 }
