@@ -161,7 +161,7 @@
         justify-content: center;
 
         .main-header {
-          width: 60%;
+          width: 80%;
         }
 
         img {
@@ -296,14 +296,127 @@
 
 
 @media screen and (max-width: 1198px) {
-  .main-menu {
-    .content {
-      .main-header {
-        width: 50% !important;
+  .menu-wrapper {
+    .main-menu {
+      padding: 8px;
+
+      .content {
+        .main-header {
+          width: 90%;
+        }
+
+        .menu-name {
+          left: 35px;
+        }
+
+        width: 100%;
+        max-height: 800px;
+        overflow: hidden;
+        position: relative;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+
+        img {
+          position: relative;
+          bottom: 200px;
+        }
       }
 
-      .menu-name {
-        left: 50px !important;
+      .menu-foods {
+        width: 100%;
+
+        padding: 0px;
+
+        .items-wrapper {
+          border-radius: 20px;
+          border: 1px solid var(--default-border-color);
+          padding: 24px 10px;
+
+          .items {
+            width: 100%;
+
+            .food-category-redirect-button {
+              padding: 8px;
+              border-radius: 8px;
+              border: 1px solid var(--default-border-color);
+              color: var(--default-text-color);
+              margin-right: 5px;
+            }
+
+            .foods-categories {
+              margin-top: 20px;
+              width: 100%;
+              display: flex;
+              justify-content: center;
+
+              .food {
+                width: 100%;
+                margin-top: 50px;
+
+                .category-name {
+                  text-align: center;
+                  font-size: 35px;
+                  margin-bottom: 40px;
+                  color: var(--default-text-color);
+                }
+
+                .food-exibition {
+                  height: auto;
+                  display: flex;
+                  align-items: center;
+                  margin-bottom: 20px;
+                  gap: 24px;
+
+                  .category-image {
+                    height: 250px;
+                    color: var(--default-text-color);
+
+                    img {
+                      border-radius: 8px;
+                    }
+                  }
+
+                  .category-description {
+                    .description-wrapper {
+                      color: var(--default-text-color);
+
+                      .product-header {
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                        gap: 10px;
+
+                        .dots {
+                          flex-grow: 1;
+                          border-bottom: 1px dashed var(--default-text-color);
+                          height: 0.8em;
+                          margin: 0 5px;
+                        }
+                      }
+
+
+
+                      .product-name {
+                        font-size: 22px;
+                      }
+
+                      .product-price {
+                        font-size: 18px;
+                      }
+
+                      .product-description {
+                        font-size: 13px;
+                        margin-top: 10px;
+                        color: var(--default-secondary-text-color)
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

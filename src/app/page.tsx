@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <Row className="homepage">
-      <Col xs={18} className="main-presentation">
+      <Col xs={24} xl={18} className="main-presentation">
         <HeaderMenu />
         <MainVideo />
         <div className="main-text">
@@ -50,7 +50,7 @@ export default function Home() {
           </Row>
         </div>
       </Col>
-      <Col xs={6} className="categories">
+      <Col xs={24} xl={6} className="categories">
         <div className="main-categories">
           {pages?.map((page) => {
             return (

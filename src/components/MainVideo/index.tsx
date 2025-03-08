@@ -4,7 +4,7 @@ export default function MainVideo() {
       <video
         src="/assets/main_video.mp4"
         autoPlay
-        loop
+        // loop
         muted
         playsInline
         style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '20px' }}

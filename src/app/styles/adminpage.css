@@ -66,16 +66,16 @@
 
       .list-cards {
         background-color: #f5f5f5;
-        border-color: var(--default-border-color);
+        border-color: var(--lighter-border-color);
         margin-bottom: 10px;
 
         .ant-list-header {
-          border-block-end: 1px solid var(--default-border-color);
+          border-block-end: 1px solid var(--lighter-border-color);
         }
 
         .dots {
           flex-grow: 1;
-          border-bottom: 1px dashed var(--default-border-color);
+          border-bottom: 1px dashed;
           height: 0.8em;
           margin: 0 5px;
         }
@@ -138,5 +138,10 @@
         display: inline-flex;
       }
     }
+  }
+
+  .edit-icon:hover,
+  .delete-popover:hover {
+    color: rebeccapurple;
   }
 }

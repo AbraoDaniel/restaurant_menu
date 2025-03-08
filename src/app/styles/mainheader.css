@@ -9,9 +9,9 @@
   z-index: 100;
   margin-top: 50px;
   margin-left: 50px;
-  animation: showing 0.5s linear; 
+  animation: showing 0.5s linear;
 
-  
+
   .header-content {
     display: flex;
     align-items: center;
@@ -26,28 +26,122 @@
 
     .restaurant-name {
       font-weight: bold;
-    font-size: 20px;
+      font-size: 20px;
+
       .name {
         font-size: 30px;
         cursor: pointer;
+
         a {
           color: var(--default-text-color);
         }
       }
     }
+
     .menu-options {
       .menu-item {
         a {
           color: var(--default-text-color);
         }
+
         font-size: 13px;
         cursor: pointer;
       }
+
       .menu-item:hover {
         a {
           font-weight: bold !important;
         }
       }
+    }
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .main-header {
+    width: 90%;
+    background-color: var(--default-background-color);
+    border-radius: 12px;
+    padding: 10px;
+    position: absolute;
+    z-index: 100;
+    margin-top: 10px;
+    margin-left: 10px;
+    animation: showing 0.5s linear;
+
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+
+      p {
+        margin: 0 15px;
+        font-size: 16px;
+        display: inline-block;
+      }
+
+      .restaurant-name {
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+
+        .name {
+          font-size: 30px;
+          cursor: pointer;
+
+          a {
+            color: var(--default-text-color);
+          }
+        }
+      }
+
+      .menu-options {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+
+        .menu-item {
+          a {
+            color: var(--default-text-color);
+          }
+
+          font-size: 13px;
+          cursor: pointer;
+        }
+
+        .menu-item:hover {
+          a {
+            font-weight: bold !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .main-header {
+    width: 80%;
+    margin-top: 20px;
+    margin-left: 20px;
+
+    .menu-options {
+      margin-top: 0 !important;
+    }
+  }
+}
+
+@media screen and (min-width: 1001px) {
+  .main-header {
+    width: 45%;
+    margin-top: 20px;
+    margin-left: 20px;
+
+    .menu-options {
+      margin-top: 0 !important;
     }
   }
 }

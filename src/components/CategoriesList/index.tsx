@@ -1,10 +1,14 @@
 import { Button, Card, Col, Image, List, Popover, Row, Spin, Typography } from "antd";
 import { MdAddCircleOutline, MdCreate, MdDelete } from "react-icons/md";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import NewProductModal from "../NewProductModal";
 import { Forum, Inter, Truculenta } from "next/font/google";
 import { useMessageFunctions } from "../Message";
 import DeleteConfirmationPopover from "../DeleteConfirmationPopover";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { DraggableCard } from "../DraggableCard";
+
 const forum = Forum({
   weight: "400",
   subsets: ["latin"],
@@ -46,6 +50,20 @@ export default function CategoriesList({ categories, productsMap, fetchCategorie
   const [currentCategory, setCurrentCategory] = useState<Category>({ id: '0', name: '' })
   const [currentProduct, setCurrentProduct] = useState<any>()
   const { messageSuccess, contextHolder } = useMessageFunctions()
+
+  const [orderedCategories, setOrderedCategories] = useState<Category[]>(categories);
+
+  useEffect(() => {
+    setOrderedCategories(categories);
+  }, [categories]);
+
+  const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
+    const updated = Array.from(orderedCategories);
+    const [removed] = updated.splice(dragIndex, 1);
+    updated.splice(hoverIndex, 0, removed);
+    setOrderedCategories(updated);
+    // Se desejar, aqui você pode disparar uma função para salvar a nova ordem no backend
+  }, [orderedCategories]);
 
   useEffect(() => {
     if (!showAddProductModal) {
@@ -96,79 +114,84 @@ export default function CategoriesList({ categories, productsMap, fetchCategorie
   return (
     <div style={{ marginTop: 20 }}>
       {contextHolder}
-      {categories.map((cat) => (
-        <Card key={cat?.id} className="list-cards">
-          <Spin spinning={loadingOperation}>
-            {showAddProductModal && <NewProductModal showSuccessMessage={showSuccessMessage} loadingOperation={loadingOperation} handleCancel={() => setShowAddProductModal(false)} setLoadingOperation={setLoadingOperation} category={currentCategory} product={currentProduct} fetchProducts={fetchProducts} />}
-            <List
-              itemLayout="horizontal"
-              dataSource={productsMap[cat?.id]}
-              header={<div className="category-list-title" style={{ fontSize: 18, fontWeight: 600 }}>
-                {cat?.name}
-                <MdAddCircleOutline onClick={() => {
-                  setCurrentCategory(cat)
-                  setShowAddProductModal(true)
-                }} />
+      <DndProvider backend={HTML5Backend}>
+        {orderedCategories.map((cat, index) => (
+          <DraggableCard key={cat.id} card={cat} index={index} moveCard={moveCard}>
+            <Card className="list-cards">
+              <Spin spinning={loadingOperation}>
+                {showAddProductModal && <NewProductModal showSuccessMessage={showSuccessMessage} loadingOperation={loadingOperation} handleCancel={() => setShowAddProductModal(false)} setLoadingOperation={setLoadingOperation} category={currentCategory} product={currentProduct} fetchProducts={fetchProducts} />}
+                <List
+                  itemLayout="horizontal"
+                  dataSource={productsMap[cat?.id]}
+                  header={<div className="category-list-title" style={{ fontSize: 18, fontWeight: 600 }}>
+                    {cat?.name}
+                    <MdAddCircleOutline onClick={() => {
+                      setCurrentCategory(cat)
+                      setShowAddProductModal(true)
+                    }} />
 
-                <DeleteConfirmationPopover
-                  children={
-                    <MdDelete style={{ fontSize: 20, cursor: 'pointer' }} />
-                  }
-                  handleConfirm={() => handleDeleteCategory(cat?.id)}
+                    <DeleteConfirmationPopover
+                      children={
+                        <MdDelete style={{ fontSize: 20, cursor: 'pointer' }} className="delete-popover" />
+                      }
+                      handleConfirm={() => handleDeleteCategory(cat?.id)}
+                    />
+                  </div>}
+                  renderItem={(item, index) => (
+                    <List.Item key={`${item?.id}_${index}`}>
+                      <Row style={{ width: '100%', display: 'flex', alignItems: 'center' }}>
+                        <Col xs={4}>
+                          <Image
+                            src={item?.imageUrl || "/assets/about.jpg"}
+                            alt={`foto do produto: ${item?.name}`}
+                            width={180}
+                            height={120}
+                            style={{ borderRadius: 20, objectFit: "cover" }}
+                          />
+                        </Col>
+                        <Col xs={20}>
+                          <Row className="product-header" align="middle" style={{ width: '100%' }}>
+                            <Col style={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+                              <p className={`item-name ${forum.className}`} style={{ margin: 0 }}>
+                                {item?.name}
+                              </p>
+                              <p className="dots" style={{ margin: '0 5px' }}></p>
+                              <p className={`item-price ${forum.className}`} style={{ margin: 0 }}>
+                                {`R$ ${item?.price}`}
+                              </p>
+                            </Col>
+                            <Col style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                              <MdCreate
+                                style={{ fontSize: 20, cursor: 'pointer', marginLeft: 100 }}
+                                onClick={() => {
+                                  setCurrentProduct(item);
+                                  setShowAddProductModal(true);
+                                }}
+                                className="edit-icon"
+                              />
+                              <DeleteConfirmationPopover
+                                children={
+                                  <MdDelete style={{ fontSize: 20, cursor: 'pointer' }} className="delete-popover" />
+                                }
+                                handleConfirm={() => handleDeleteProduct(cat.id, item.id!)}
+                              />
+                            </Col>
+                          </Row>
+                          <Row>
+                            <p className="item-description" style={{ margin: 0, marginTop: 5 }}>
+                              {item?.description}
+                            </p>
+                          </Row>
+                        </Col>
+                      </Row>
+                    </List.Item>
+                  )}
                 />
-              </div>}
-              renderItem={(item, index) => (
-                <List.Item key={`${item?.id}_${index}`}>
-                  <Row style={{ width: '100%', display: 'flex', alignItems: 'center' }}>
-                    <Col xs={4}>
-                      <Image
-                        src={item?.imageUrl || "/assets/about.jpg"}
-                        alt={`foto do produto: ${item?.name}`}
-                        width={180}
-                        height={120}
-                        style={{ borderRadius: 20, objectFit: "cover" }}
-                      />
-                    </Col>
-                    <Col xs={20}>
-                      <Row className="product-header" align="middle" style={{ width: '100%' }}>
-                        <Col style={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
-                          <p className={`item-name ${forum.className}`} style={{ margin: 0 }}>
-                            {item?.name}
-                          </p>
-                          <p className="dots" style={{ margin: '0 5px' }}></p>
-                          <p className={`item-price ${forum.className}`} style={{ margin: 0 }}>
-                            {`R$ ${item?.price}`}
-                          </p>
-                        </Col>
-                        <Col style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                          <MdCreate
-                            style={{ fontSize: 20, cursor: 'pointer', marginLeft: 100 }}
-                            onClick={() => {
-                              setCurrentProduct(item);
-                              setShowAddProductModal(true);
-                            }}
-                          />
-                          <DeleteConfirmationPopover
-                            children={
-                              <MdDelete style={{ fontSize: 20, cursor: 'pointer' }} />
-                            }
-                            handleConfirm={() => handleDeleteProduct(cat.id, item.id!)}
-                          />
-                        </Col>
-                      </Row>
-                      <Row>
-                        <p className="item-description" style={{ margin: 0, marginTop: 5 }}>
-                          {item?.description}
-                        </p>
-                      </Row>
-                    </Col>
-                  </Row>
-                </List.Item>
-              )}
-            />
-          </Spin>
-        </Card>
-      ))}
+              </Spin>
+            </Card>
+          </DraggableCard>
+        ))}
+      </DndProvider>
     </div>
   )
 }

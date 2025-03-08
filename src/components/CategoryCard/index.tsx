@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Inter } from "next/font/google";
+import { Inter, Forum } from "next/font/google";
 import Link from "next/link";
 
 const inter = Inter({
@@ -8,6 +8,11 @@ const inter = Inter({
   display: "swap",
 });
 
+const forum = Forum({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
 interface ICategoryCard {
   path: string;
   label: string
@@ -26,7 +31,7 @@ export default function CategoryCard({ path, label, image }: ICategoryCard) {
         <div className="background-gradient">
         </div>
         <div className="category-name">
-          <p className={`name ${inter.className}`}>
+          <p className={`name ${forum.className}`}>
             {label}
           </p>
         </div>

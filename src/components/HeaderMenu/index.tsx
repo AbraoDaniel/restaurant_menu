@@ -25,14 +25,14 @@ const HeaderMenu: React.FC = () => {
   return (
     <div className="main-header">
       <Row className="header-content" justify="space-between">
-        <Col xs={3} className={`restaurant-name`}>
+        <Col xs={24} md={3} className={`restaurant-name`}>
           <p className={`name ${forum.className}`}>
             <Link href={'/'}>
               {'danti.'}
             </Link>
           </p>
         </Col>
-        <Col xs={17} className="menu-options">
+        <Col xs={24} md={17} className="menu-options">
           {pageItems?.map((item) => {
             return (
               <p className={`menu-item ${inter.className}`} key={item.key}>

@@ -45,7 +45,6 @@ export default function MenuCategory({ category, items }: IMenuCategory) {
               <MenuItem key={`${item?.name}_${index}`} item={item} />
             )
           })}
-
         </div>
       </div>
     </Row>

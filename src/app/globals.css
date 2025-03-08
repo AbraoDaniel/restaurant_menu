@@ -17,6 +17,7 @@
   --default-text-color: #faf9f6e8;
   --default-secondary-text-color: #dfdfdfde;
   --default-border-color: #333330;
+  --lighter-border-color: #33333061;
 }
 
 @supports (-moz-appearance: none) {

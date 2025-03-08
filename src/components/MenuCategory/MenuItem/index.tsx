@@ -31,7 +31,7 @@ interface IMenuItem {
 export default function MenuItem({ item }: IMenuItem) {
   return (
     <Row style={{ width: '100%' }} className="food-exibition">
-      <Col xs={5} xl={7} className="category-image">
+      <Col xs={24} xl={7} className="category-image">
         <Image
           src={item?.imageUrl}
           alt="Categoria"
@@ -39,7 +39,7 @@ export default function MenuItem({ item }: IMenuItem) {
           style={{ objectFit: "cover" }}
         />
       </Col>
-      <Col xs={18} xl={15} className="category-description">
+      <Col xs={24} xl={15} className="category-description">
         <div className="description-wrapper">
           <Row justify="space-between" className="product-header">
             <p className={`product-name ${forum.className}`}>

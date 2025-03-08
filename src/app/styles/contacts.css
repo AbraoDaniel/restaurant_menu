@@ -231,14 +231,16 @@
 
 
 @media screen and (max-width: 1198px) {
-  .main-menu {
-    .content {
-      .main-header {
-        width: 50% !important;
-      }
+  .contacts-wrapper {
+    .main-menu {
+      .content {
+        .main-header {
+          width: 50% !important;
+        }
 
-      .menu-name {
-        left: 50px !important;
+        .menu-name {
+          left: 50px !important;
+        }
       }
     }
   }
