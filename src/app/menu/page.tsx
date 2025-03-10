@@ -68,7 +68,7 @@ export default async function Menu() {
             src="/assets/default-menu.jpg"
             alt="imagem"
             width={1000}
-            height={1100}
+            height={1200}
           />
           <div className="menu-name">
             <p className={`name ${forum.className}`}>

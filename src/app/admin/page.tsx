@@ -133,7 +133,7 @@ export default function AdminPage() {
       {contextHolder}
       {showAddCategoryModal && <NewCatalogModal category={currentCategory} setShowCatalogMessage={setSuccessMessage} fetchCategories={fetchCategories} handleCancel={() => setShowAddCategoryModal(false)} />}
       {showHeaderDrawer && <HeaderDrawer setOpenHeaderDrawer={setShowHeaderDrawer} items={adminItems} />}
-      <Sider collapsible collapsed={collapsedMenu} onCollapse={(value) => setCollapsedMenu(value)} className="admin-sider">
+      <Sider width={230} collapsible collapsed={collapsedMenu} onCollapse={(value) => setCollapsedMenu(value)} className="admin-sider">
         <div className="panel-title">
           <Link href="/" style={{ cursor: 'pointer' }}>
             <p className={`admin-panel ${forum.className}`} >{
