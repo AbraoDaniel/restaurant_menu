@@ -1,12 +1,9 @@
 import { Metadata } from "next";
 import "./globals.css";
-
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 
-
-
 export const metadata: Metadata = {
-  title: 'Restaurante gourmet',
+  title: 'danti.',
   description: 'Restaurante gourmet',
   viewport: 'width=device-width, initial-scale=1',
   icons: {
@@ -16,7 +13,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Restaurante gourmet',
     description: 'Restaurante gourmet',
-    // images: ['https://danielabrao.com.br/danti-laptop.png']
   },
   robots: {
     index: true,

@@ -4,35 +4,24 @@ import React, { useRef } from "react";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
 import { motion } from "framer-motion";
 import type { Identifier } from "dnd-core";
+import { IDraggableCardProps, IDragItem, ItemTypes } from "@/util/types";
 
-export const ItemTypes = {
-  CARD: "card",
-};
 
-interface DraggableCardProps {
-  card: any; // Tipo Category
-  index: number;
-  moveCard: (dragIndex: number, hoverIndex: number) => void;
-  children: React.ReactNode;
-}
 
-interface DragItem {
-  index: number;
-  id: string;
-  type: string;
-}
-
-export function DraggableCard({ card, index, moveCard, children }: DraggableCardProps) {
+export function DraggableCard({ card, index, moveCard, children, onDrop }: IDraggableCardProps) {
   const ref = useRef<HTMLDivElement>(null);
 
-  const [{ handlerId }, drop] = useDrop<DragItem, void, { handlerId: Identifier | null }>({
+  const [{ handlerId }, drop] = useDrop<IDragItem, void, { handlerId: Identifier | null }>({
     accept: ItemTypes.CARD,
     collect(monitor) {
       return {
         handlerId: monitor.getHandlerId(),
       };
     },
-    hover(item: DragItem, monitor: DropTargetMonitor) {
+    drop() {
+      onDrop()
+    },
+    hover(item: IDragItem, monitor: DropTargetMonitor) {
       if (!ref.current) return;
       const dragIndex = item.index;
       const hoverIndex = index;

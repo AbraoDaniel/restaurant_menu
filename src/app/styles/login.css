@@ -6,6 +6,11 @@
   align-items: center;
   animation: showing 1s linear;
 
+  .ant-input-outlined:focus,
+  .ant-input-outlined:hover {
+    border-color: white !important;
+  }
+
   .content {
     width: 30%;
     height: 50%;

@@ -3,8 +3,7 @@
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "@/util/firebase"
 import { useEffect, useState } from "react"
-import { Row, Layout, Menu, Spin, } from "antd"
-import { Forum, Inter } from "next/font/google"
+import { Row, Layout, Menu, Spin, Skeleton, } from "antd"
 import { MdAddCircleOutline, MdAdminPanelSettings, MdFormatListBulleted, MdMenu } from "react-icons/md"
 import type { MenuProps } from 'antd'
 import NewCatalogModal from "@/components/NewCatalogModal"
@@ -13,32 +12,10 @@ import Link from "next/link"
 import { useMessageFunctions } from "@/components/Message"
 import HeaderDrawer from "@/components/HeaderDrawer"
 import { adminItems } from "@/util/generalFields"
+import { forum, inter } from "@/util/fonts"
+import { ICategory, IProduct } from "@/util/types"
 
 const { Header, Content, Sider } = Layout;
-const forum = Forum({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-})
-const inter = Inter({
-  weight: "300",
-  subsets: ["latin"],
-  display: "swap",
-})
-
-type Category = {
-  id: string
-  name: string
-}
-
-type Product = {
-  id?: string
-  name: string
-  price: number
-  description: string
-  imageUrl: string
-  category_id: string
-}
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -66,14 +43,18 @@ export default function AdminPage() {
   const [showAddCategoryModal, setShowAddCategoryModal] = useState(false)
   const [showHeaderDrawer, setShowHeaderDrawer] = useState(false)
   const [collapsedMenu, setCollapsedMenu] = useState(false)
-  const [categories, setCategories] = useState<Category[]>([])
-  const [productsMap, setProductsMap] = useState<{ [key: string]: Product[] }>({})
-  const [currentCategory, setCurrentCategory] = useState<Category | undefined>({ id: '0', name: '' })
+  const [categories, setCategories] = useState<ICategory[]>([])
+  const [productsMap, setProductsMap] = useState<{ [key: string]: IProduct[] }>({})
+  const [currentCategory, setCurrentCategory] = useState<ICategory | undefined>({ id: '0', name: '' })
   const [successMessage, setSuccessMessage] = useState(false)
 
   useEffect(() => {
     if (successMessage) {
-      messageSuccess("Categoria criada com sucesso!")
+      if (currentCategory?.id) {
+        messageSuccess("Categoria atualizada com sucesso!")
+      } else {
+        messageSuccess("Categoria criada com sucesso!")
+      }
       setSuccessMessage(false)
     }
   }, [successMessage])
@@ -96,7 +77,7 @@ export default function AdminPage() {
       if (!res.ok) throw new Error("Falha ao buscar categorias")
       const data = await res.json()
       setCategories(data)
-      data.forEach((cat: Category) => {
+      data.forEach((cat: ICategory) => {
         fetchProducts(cat.id)
       })
 
@@ -117,7 +98,7 @@ export default function AdminPage() {
     }
   }
 
-  function handleEditCategory(category: Category) {
+  function handleEditCategory(category: ICategory) {
     setCurrentCategory(category);
     setShowAddCategoryModal(true);
   }
@@ -157,16 +138,16 @@ export default function AdminPage() {
         </Header>
         <div className="main-page">
           <Layout className="main-categories">
-            <Spin spinning={loading} className="spin-loading">
-              <Content style={{ margin: '0 16px' }} className="main-content" >
-                <Row className="category-title">
-                  <p className={`category-main-title ${forum.className}`}>Categorias</p>
-                  <MdAddCircleOutline onClick={handleNewCategory} />
-                </Row>
+            <Content style={{ margin: '0 16px' }} className="main-content" >
+              <Row className="category-title">
+                <p className={`category-main-title ${forum.className}`}>Categorias</p>
+                {!loading && <MdAddCircleOutline onClick={handleNewCategory} />}
+              </Row>
+              <Spin spinning={loading} className="spin-loading">
                 <CategoriesList setShowAddCategoryModal={setShowAddCategoryModal} categories={categories} productsMap={productsMap} fetchCategories={fetchCategories} fetchProducts={fetchProducts} onEditCategory={handleEditCategory}
                 />
-              </Content>
-            </Spin>
+              </Spin>
+            </Content>
           </Layout>
         </div>
       </div>

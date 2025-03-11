@@ -134,7 +134,7 @@
   }
 }
 
-@media screen and (min-width: 1001px) {
+@media screen and (min-width: 1001px) and (max-width: 1919px) {
   .main-header {
     width: 50%;
     margin-top: 20px;
@@ -143,5 +143,11 @@
     .menu-options {
       margin-top: 0 !important;
     }
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .main-header {
+    width: 35%;
   }
 }

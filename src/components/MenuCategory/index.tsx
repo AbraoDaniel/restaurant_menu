@@ -1,33 +1,7 @@
 import { Col, Row } from "antd";
-import { Forum, Inter } from "next/font/google";
-import Image from "next/image";
 import MenuItem from "./MenuItem";
-
-const forum = Forum({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const inter = Inter({
-  weight: "300",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-type Product = {
-  id: string;
-  name: string;
-  price: number;
-  description: string;
-  imageUrl: string;
-  category_id: string;
-};
-
-interface IMenuCategory {
-  category: string,
-  items: Product[]
-}
+import { forum } from "@/util/fonts";
+import { IMenuCategory } from "@/util/types";
 
 export default function MenuCategory({ category, items }: IMenuCategory) {
   return (

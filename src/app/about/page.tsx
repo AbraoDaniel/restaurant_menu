@@ -1,19 +1,8 @@
 import Image from "next/image";
 import { Col, Rate, Row, Typography } from "antd"
-import { Forum, Inter } from "next/font/google";
 import HeaderMenu from "@/components/HeaderMenu";
+import { forum, inter } from "@/util/fonts";
 
-const forum = Forum({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const inter = Inter({
-  weight: "300",
-  subsets: ["latin"],
-  display: "swap",
-});
 export default function About() {
   return (
     <Row className="contacts-wrapper">

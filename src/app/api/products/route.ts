@@ -1,4 +1,3 @@
-// src/app/api/products/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/util/firebase";
 import { collection, addDoc, getDocs, query, where, DocumentData, Query, doc, updateDoc, deleteDoc } from "firebase/firestore";
@@ -15,7 +14,7 @@ export async function POST(req: NextRequest) {
       name,
       price,
       description,
-      imageUrl, // A URL gerada pelo Supabase é salva aqui
+      imageUrl,
       category_id
     });
 
@@ -26,7 +25,6 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// GET para listar produtos (ou filtrar por categoria)
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);

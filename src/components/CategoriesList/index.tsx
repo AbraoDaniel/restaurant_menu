@@ -1,59 +1,26 @@
 import { Button, Card, Col, Image, List, Popover, Row, Spin, Typography } from "antd";
-import { MdAddCircleOutline, MdCreate, MdDelete } from "react-icons/md";
+import { MdAddCircleOutline, MdCreate, MdDelete, MdDragIndicator } from "react-icons/md";
 import { useCallback, useEffect, useState } from "react";
 import NewProductModal from "../NewProductModal";
-import { Forum, Inter, Truculenta } from "next/font/google";
 import { useMessageFunctions } from "../Message";
 import DeleteConfirmationPopover from "../DeleteConfirmationPopover";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DraggableCard } from "../DraggableCard";
+import { forum } from "@/util/fonts";
+import { ICategoriesList, ICategory } from "@/util/types";
 
-const forum = Forum({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-});
-const inter = Inter({
-  weight: "300",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-type Category = {
-  id: string;
-  name: string;
-};
-
-type Product = {
-  id?: string;
-  name: string;
-  price: number;
-  description: string;
-  imageUrl: string;
-  category_id: string;
-};
-
-interface ICategoriesList {
-  categories: Category[]
-  productsMap: {
-    [key: string]: Product[];
-  }
-  fetchCategories: () => void
-  fetchProducts: (id: string) => void
-  setShowAddCategoryModal: (value: boolean) => void
-  onEditCategory: (category: Category) => void
-}
 
 export default function CategoriesList({ categories, productsMap, fetchCategories, fetchProducts, setShowAddCategoryModal, onEditCategory }: ICategoriesList) {
   const [loadingOperation, setLoadingOperation] = useState(false)
   const [showAddProductModal, setShowAddProductModal] = useState(false)
-  const [currentCategory, setCurrentCategory] = useState<Category>({ id: '0', name: '' })
+  const [currentCategory, setCurrentCategory] = useState<ICategory>({ id: '0', name: '' })
   const [currentProduct, setCurrentProduct] = useState<any>()
-  const { messageSuccess, contextHolder } = useMessageFunctions()
+  const [showSaveOrder, setShowSaveOrder] = useState(false)
+  const { messageSuccess, messageError, contextHolder } = useMessageFunctions()
 
 
-  const [orderedCategories, setOrderedCategories] = useState<Category[]>(categories);
+  const [orderedCategories, setOrderedCategories] = useState<ICategory[]>(categories);
 
   useEffect(() => {
     setOrderedCategories(categories);
@@ -65,6 +32,37 @@ export default function CategoriesList({ categories, productsMap, fetchCategorie
     updated.splice(hoverIndex, 0, removed);
     setOrderedCategories(updated);
   }, [orderedCategories]);
+
+  async function handleSaveOrder() {
+    setLoadingOperation(true)
+    const body = orderedCategories.map((cat, index) => ({
+      id: cat.id,
+      order: index,
+    }));
+
+    try {
+      const res = await fetch("/api/categories/reorder", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ categories: body }),
+      });
+      if (!res.ok) throw new Error("Falha ao salvar ordem");
+      setShowSaveOrder(false)
+      setLoadingOperation(false)
+      messageSuccess("Ordem atualizada com sucesso!");
+    } catch (error) {
+      setLoadingOperation(false)
+      console.error(error)
+      messageError("Erro ao salvar ordem");
+    }
+  }
+
+  async function handleCancelReorder() {
+    setLoadingOperation(true)
+    setShowSaveOrder(false)
+    fetchCategories()
+    setLoadingOperation(false)
+  }
 
   useEffect(() => {
     if (!showAddProductModal) {
@@ -115,9 +113,15 @@ export default function CategoriesList({ categories, productsMap, fetchCategorie
   return (
     <div style={{ marginTop: 20 }}>
       {contextHolder}
+      {showSaveOrder && (
+        <Row justify="end">
+          <Button className="button-cancel-order" onClick={handleCancelReorder}>{'Cancelar'}</Button>
+          <Button className="button-save-order" onClick={handleSaveOrder}>{'Salvar ordenação'}</Button>
+        </Row>
+      )}
       <DndProvider backend={HTML5Backend}>
         {orderedCategories.map((cat, index) => (
-          <DraggableCard key={cat.id} card={cat} index={index} moveCard={moveCard}>
+          <DraggableCard key={cat.id} card={cat} index={index} moveCard={moveCard} onDrop={() => setShowSaveOrder(true)}>
             <Card className="list-cards">
               <Spin spinning={loadingOperation}>
                 {showAddProductModal && <NewProductModal showSuccessMessage={showSuccessMessage} loadingOperation={loadingOperation} handleCancel={() => setShowAddProductModal(false)} setLoadingOperation={setLoadingOperation} category={currentCategory} product={currentProduct} fetchProducts={fetchProducts} />}
@@ -125,6 +129,7 @@ export default function CategoriesList({ categories, productsMap, fetchCategorie
                   itemLayout="horizontal"
                   dataSource={productsMap[cat?.id]}
                   header={<div className="category-list-title" style={{ fontSize: 18, fontWeight: 600 }}>
+                    <MdDragIndicator style={{ marginLeft: 0, cursor: 'grab' }} />
                     {cat?.name}
                     <MdAddCircleOutline onClick={() => {
                       setCurrentCategory(cat)

@@ -69,6 +69,27 @@
         color: var(--default-background-color) !important;
       }
 
+      .main-content {
+        .button-save-order {
+          margin-bottom: 10px;
+          margin-left: 10px;
+          background-color: var(--default-background-color);
+          color: var(--default-text-color);
+          font-weight: 600;
+        }
+
+        .button-save-order:hover {
+          background-color: var(--default-text-color);
+          color: var(--default-background-color);
+          border-color: var(--default-background-color);
+        }
+
+        .button-cancel-order:hover {
+          color: var(--default-background-color);
+          border-color: var(--default-background-color);
+        }
+      }
+
       .list-cards {
         background-color: #f5f5f5;
         border-color: var(--lighter-border-color);
@@ -243,6 +264,7 @@
       position: relative;
 
       .menu-icon {
+        cursor: pointer;
         position: absolute;
         top: 20px;
         left: 50px;

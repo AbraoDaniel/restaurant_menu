@@ -1,18 +1,6 @@
+import { forum, inter } from "@/util/fonts";
 import { Col, Row } from "antd"
-import { Forum, Inter } from "next/font/google";
 import Link from "next/link";
-
-const forum = Forum({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const inter = Inter({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 
 const HeaderMenu: React.FC = () => {

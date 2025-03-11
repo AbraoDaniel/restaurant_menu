@@ -1,32 +1,7 @@
+import { forum, inter } from "@/util/fonts";
+import { IMenuItem } from "@/util/types";
 import { Col, Row } from "antd";
-import { Forum, Inter } from "next/font/google";
 import Image from "next/image";
-
-const forum = Forum({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const inter = Inter({
-  weight: "200",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-type Product = {
-  id: string;
-  name: string;
-  price: number;
-  description: string;
-  imageUrl: string;
-  category_id: string;
-};
-
-
-interface IMenuItem {
-  item: Product
-}
 
 export default function MenuItem({ item }: IMenuItem) {
   return (

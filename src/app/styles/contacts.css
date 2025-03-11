@@ -296,3 +296,15 @@
 
   }
 }
+
+@media screen and (min-width: 1920px) {
+  .contacts-wrapper {
+    .main-menu {
+      .content {
+        .main-header {
+          width: 50%;
+        }
+      }
+    }
+  }
+}

@@ -1,12 +1,5 @@
+import { forum } from "@/util/fonts";
 import { Drawer, Menu } from "antd"
-import { Forum } from "next/font/google";
-
-const forum = Forum({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-})
-
 interface IHeaderDrawer {
   setOpenHeaderDrawer: (value: boolean) => void
   items: {

@@ -1,54 +1,25 @@
 import Image from "next/image";
 import { Col, Row } from "antd"
-import { Forum, Inter } from "next/font/google";
 import HeaderMenu from "@/components/HeaderMenu";
 import MenuCategory from "@/components/MenuCategory";
-import { menuItems } from "@/util/generalFields";
 import Link from "next/link";
+import { forum } from "@/util/fonts";
+import { ICategory, IProduct } from "@/util/types";
 
-const forum = Forum({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-});
 
-const inter = Inter({
-  weight: "300",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-type Product = {
-  id: string;
-  name: string;
-  price: number;
-  description: string;
-  imageUrl: string;
-  category_id: string;
-};
-
-type Category = {
-  id: string
-  name: string
-}
-
-interface MenuProps {
-  categories: (Category & { products: Product[] })[];
-}
 
 async function getCategoriesWithProducts() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
-  // Faça as chamadas com cache desabilitado para garantir que os dados sejam atualizados a cada requisição
   const categoriesRes = await fetch(`${baseUrl}/api/categories`, { cache: 'no-store' });
   if (!categoriesRes.ok) throw new Error("Falha ao buscar categorias");
-  const categories: Category[] = await categoriesRes.json();
+  const categories: ICategory[] = await categoriesRes.json();
 
   const categoriesWithProducts = await Promise.all(
     categories.map(async (cat) => {
       const productsRes = await fetch(`${baseUrl}/api/products?category_id=${cat.id}`, { cache: 'no-store' });
       if (!productsRes.ok) throw new Error("Falha ao buscar produtos");
-      const products: Product[] = await productsRes.json();
+      const products: IProduct[] = await productsRes.json();
       return { ...cat, products };
     })
   );

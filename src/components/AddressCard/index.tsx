@@ -1,16 +1,6 @@
+import { forum } from "@/util/fonts";
 import { addressAndContacts } from "@/util/generalFields";
 import { Card, Col, Row } from "antd";
-import { Forum, Inter } from "next/font/google";
-const forum = Forum({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-});
-const inter = Inter({
-  weight: "200",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 export default function AddressCard() {
   return (

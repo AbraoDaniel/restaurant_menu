@@ -1,18 +1,7 @@
+import { forum } from "@/util/fonts";
 import Image from "next/image";
-import { Inter, Forum } from "next/font/google";
 import Link from "next/link";
 
-const inter = Inter({
-  weight: "300",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const forum = Forum({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-});
 interface ICategoryCard {
   path: string;
   label: string

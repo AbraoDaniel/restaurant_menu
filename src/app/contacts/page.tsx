@@ -1,23 +1,13 @@
 import Image from "next/image";
-import { Card, Col, Row } from "antd"
-import { Forum, Inter } from "next/font/google";
+import { Col, Row } from "antd"
 import HeaderMenu from "@/components/HeaderMenu";
 import HoursCard from "@/components/HoursCard";
 import MapsCard from "@/components/MapsCard";
 import AddressCard from "@/components/AddressCard";
 import PicturesCard from "@/components/PicturesCard";
+import { forum } from "@/util/fonts";
 
-const forum = Forum({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-});
 
-const inter = Inter({
-  weight: "300",
-  subsets: ["latin"],
-  display: "swap",
-});
 export default function Contacts() {
   return (
     <Row className="contacts-wrapper">

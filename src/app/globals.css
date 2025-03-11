@@ -26,30 +26,28 @@
   }
 }
 
+.nextjs-toast {
+  display: none !important;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
-  /* Scroll vertical */
   height: 5px;
-  /* Scroll horizontal */
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: #686868;
-  /* Cor do thumb */
   border-radius: 10px;
-  /* Borda arredondada */
   cursor: grab;
 }
 
 ::-webkit-scrollbar-track {
   background-color: #e7e7e7;
-  /* Cor do fundo */
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #888888;
-  /* Cor ao passar o mouse */
 }
 
 

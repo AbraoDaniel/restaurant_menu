@@ -3,40 +3,8 @@ import ProductForm from "../ProductForm";
 import { useEffect, useState } from "react";
 import { supabase } from "@/util/supabase";
 import { useMessageFunctions } from "../Message";
+import { INewProductModal, IProductPayload } from "@/util/types";
 
-type Category = {
-  id: string;
-  name: string;
-};
-
-type Product = {
-  id: string;
-  name: string;
-  price: number;
-  description: string;
-  imageUrl: string;
-  category_id: string;
-};
-
-
-interface INewProductModal {
-  handleCancel: () => void
-  category: Category
-  fetchProducts: (id: string) => void
-  product?: Product;
-  loadingOperation: boolean
-  setLoadingOperation: (value: boolean) => void
-  showSuccessMessage: (value: string) => void
-}
-
-interface ProductPayload {
-  id?: string;
-  name: string;
-  price: number;
-  description: string;
-  imageUrl: string;
-  category_id: string;
-}
 
 export default function NewProductModal({ handleCancel, category, fetchProducts, product, loadingOperation, setLoadingOperation, showSuccessMessage }: INewProductModal) {
   const [productForm] = Form.useForm()
@@ -98,7 +66,7 @@ export default function NewProductModal({ handleCancel, category, fetchProducts,
           return;
         }
 
-        let payload: ProductPayload = {
+        let payload: IProductPayload = {
           name: validated.product_name,
           price: Number(validated.product_price),
           description: validated.product_description || "",

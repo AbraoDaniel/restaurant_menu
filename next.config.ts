@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["zjkqxhdpkszybgqtkvye.supabase.co"],
   },
+  compiler: {
+    removeConsole: {
+      exclude: ['error'],
+    },
+  }
 };
 
 export default nextConfig;

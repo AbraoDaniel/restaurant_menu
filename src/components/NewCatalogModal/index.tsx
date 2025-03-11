@@ -1,27 +1,18 @@
+import { INewCatalogModal } from "@/util/types";
 import { Col, Form, Input, Modal, Row } from "antd";
 import { useEffect, useState } from "react";
 
-type Category = {
-  id: string
-  name: string
-}
-interface INewCatalogModal {
-  handleCancel: () => void
-  fetchCategories: () => void
-  setShowCatalogMessage: (value: boolean) => void
-  category?: Category | null
-}
 export default function NewCatalogModal({ handleCancel, fetchCategories, setShowCatalogMessage, category }: INewCatalogModal) {
   const [categoryForm] = Form.useForm()
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    if (category) {
+    if (category?.id) {
       categoryForm.setFieldsValue({ name: category.name });
     } else {
       categoryForm.resetFields();
     }
-  }, [category, categoryForm]);
+  }, [category?.id, categoryForm]);
 
   async function handleAddCategory() {
     setLoading(true);
@@ -33,15 +24,13 @@ export default function NewCatalogModal({ handleCancel, fetchCategories, setShow
     }
     try {
       let res;
-      if (category) {
-        // Atualização de categoria (edição)
+      if (category?.id) {
         res = await fetch("/api/categories", {
-          method: "PUT", // ou o método que seu backend espera para editar
+          method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ id: category.id, name: newCategoryName }),
+          body: JSON.stringify({ id: category?.id, name: newCategoryName }),
         });
       } else {
-        // Criação de nova categoria
         res = await fetch("/api/categories", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -61,7 +50,7 @@ export default function NewCatalogModal({ handleCancel, fetchCategories, setShow
 
   return (
     <Modal
-      title="Nova Categoria"
+      title={category?.id ? "Editar categoria" : "Nova categoria"}
       open
       onOk={handleAddCategory}
       onCancel={() => {
