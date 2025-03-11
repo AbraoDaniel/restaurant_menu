@@ -1,10 +1,8 @@
-
-
 <h1 align="center">
   <br>
-  <img src="https://github.com/user-attachments/assets/5c53bbf9-b9c9-4ee9-a554-9c2418016976" alt="danti-logo" width="180">
+  <img src="https://github.com/user-attachments/assets/ddfd08a5-f577-4c43-b71b-ca58b9a23559" alt="danti-logo" width="180">
   <br>
-  Danti Restaurant
+  Danti Shop
   <br>
 </h1>
 
@@ -27,12 +25,33 @@
 
 
 ## About the project
+About the project
+The Modern Restaurant Menu project was developed as a sleek and efficient digital menu platform using TypeScript, React, and Next.js. By leveraging Server-Side Rendering (SSR), it ensures a smooth and fast browsing experience. The project integrates Firebase for authentication and data storage, while Supabase is used for seamless image management.
+
+Additionally, the project features a comprehensive admin panel, allowing restaurant owners and managers to effortlessly handle menu categories and products, ensuring complete control over their digital menu.
 
 ### Key Features:
-
+✔️ Modern and fluid design, enhancing user engagement and readability 🍽️ <br/>
+✔️ Server-Side Rendering (SSR) for improved performance and fast content delivery ⚡ <br/>
+✔️ Firebase integration, enabling secure authentication and real-time data updates 🔐 <br/>
+✔️ Supabase storage, allowing scalable and efficient image management 🖼️ <br/>
+✔️ Admin panel for easy management, enabling restaurants to update categories and products dynamically 🏪 <br/>
+✔️ Optimized componentization, ensuring maintainability and reusability of UI elements 🔄
  
 ## How to use
+```bash
+# Clone this repository
+$ git clone https://github.com/AbraoDaniel/restaurant_menu.git
 
+# Go into the project directory
+$ cd restaurant_menu
+
+# Install dependencies
+$ npm install
+
+# Run the application
+$ npm run dev
+```
 
 ## Contact
 
