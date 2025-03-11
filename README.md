@@ -2,7 +2,7 @@
   <br>
   <img src="https://github.com/user-attachments/assets/ddfd08a5-f577-4c43-b71b-ca58b9a23559" alt="danti-logo" width="180">
   <br>
-  Danti Shop
+  Danti Restaurant Menu
   <br>
 </h1>
 
@@ -25,8 +25,7 @@
 
 
 ## About the project
-About the project
-The Modern Restaurant Menu project was developed as a sleek and efficient digital menu platform using TypeScript, React, and Next.js. By leveraging Server-Side Rendering (SSR), it ensures a smooth and fast browsing experience. The project integrates Firebase for authentication and data storage, while Supabase is used for seamless image management.
+The Danti Restaurant Menu project was developed as a sleek and efficient digital menu platform using TypeScript, React, and Next.js. By leveraging Server-Side Rendering (SSR), it ensures a smooth and fast browsing experience. The project integrates Firebase for authentication and data storage, while Supabase is used for seamless image management.
 
 Additionally, the project features a comprehensive admin panel, allowing restaurant owners and managers to effortlessly handle menu categories and products, ensuring complete control over their digital menu.
 
